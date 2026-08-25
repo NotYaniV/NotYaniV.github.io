@@ -1,0 +1,11 @@
+.DS_Store
+.gstack/
+.impeccable/
+.claude/
+.codex/
+
+# working docs — not needed to serve the site
+DESIGN.md
+PRODUCT.md
+docs/
+editorial.html

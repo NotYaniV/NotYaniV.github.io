@@ -1,0 +1,1991 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vinay Prabhu — Senior Backend Engineer &amp; Engineering Lead</title>
+<meta name="description" content="Senior backend engineer and engineering lead. Six years on Python, PostgreSQL and AWS across SaaS, IoT and EV platforms. I find the bugs teams learned to live with.">
+<meta name="author" content="Vinay Vishnu Prabhu">
+<meta name="theme-color" content="#080808">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vinay Prabhu — Senior Backend Engineer &amp; Engineering Lead">
+<meta property="og:description" content="Cut cloud cost 85% in 3 days. Recovered 19 GB. Killed a weekly restart ritual. Six years of Python, PostgreSQL, AWS and distributed systems.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@300..800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23080808'/><rect x='6' y='6' width='20' height='20' fill='none' stroke='%23CCFF00' stroke-width='3'/></svg>">
+<script>
+/* set the world before first paint, and before the canvas reads its palette */
+try{ if(localStorage.getItem('vp_theme')==='light')
+  document.documentElement.setAttribute('data-theme','light'); }catch(e){}
+</script>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THEME TOKENS — swap this block to reskin the whole site.
+   Variants (editorial / webgl-spectacle) override only these.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --bg:#080808;
+  --surface:#0E0E0E;
+  --surface-2:#131313;
+  --line:#1C1C1C;
+  --line-hi:#2E2E2E;
+  --text:#EDEDED;
+  --muted:#8A8A8A;
+  --faint:#7D7D7D;
+  --body-2:#C6C6C6;
+  --accent:#CCFF00;
+  --alert:#FF4D2E;
+  --accent-soft:rgba(204,255,0,.14);
+  --accent-line:rgba(204,255,0,.32);
+
+  --font-display:'Archivo',ui-sans-serif,system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --gutter:clamp(1.25rem,4vw,4.5rem);
+  --maxw:1440px;
+  --rule:1px solid var(--line);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .dot{animation:none}
+}
+
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--font-mono);font-weight:400;
+  font-size:clamp(13px,.92vw,15px);line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+::selection{background:var(--accent);color:#000}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+
+/* ── light world ──────────────────────────────────────────────
+   A paper terminal, not an inverted dark one. Lime cannot be text
+   here (#CCFF00 on white is ~1.1:1), so it inverts: it becomes a
+   highlighter fill carrying black text, which is how a marker
+   actually behaves on paper. Fault orange darkens to hold 5:1. */
+html[data-theme="light"]{
+  --bg:#EFEDE6;
+  --surface:#E7E4DA;
+  --line:#D2CEC0;
+  --line-hi:#B8B2A0;
+  --text:#14140F;
+  --muted:#57544A;
+  --faint:#6B6759;
+  --body-2:#3A3830;
+  --accent:#1F5A17;          /* ink green: 7.4:1 on paper */
+  --accent-soft:rgba(31,90,23,.10);
+  --accent-line:rgba(31,90,23,.34);
+  --alert:#B3301A;
+  --marker:#CCFF00;          /* the lime survives, as a fill only */
+}
+html[data-theme="light"] body{background:var(--bg);color:var(--text)}
+html[data-theme="light"] .grain{opacity:.07;mix-blend-mode:multiply}
+html[data-theme="light"] .vignette{
+  background:radial-gradient(120% 90% at 50% 0%,transparent 45%,rgba(90,84,66,.16) 100%)}
+html[data-theme="light"] .grid-rules span{border-left-color:rgba(0,0,0,.05)}
+html[data-theme="light"] .grid-rules span:first-child{border-left-color:rgba(0,0,0,.09)}
+html[data-theme="light"] #gl{display:none}          /* the point field is a night object */
+html[data-theme="light"] .topbar{
+  background:linear-gradient(to bottom,rgba(239,237,230,.94),rgba(239,237,230,.6))}
+
+/* marker fill: black on lime, 17:1, instead of unreadable lime text */
+html[data-theme="light"] .btn.solid{background:var(--marker);color:#14140F;border-color:#B9E600}
+html[data-theme="light"] .btn.solid:hover{background:#14140F;color:var(--marker);border-color:#14140F}
+html[data-theme="light"] .fig-nav button[aria-selected="true"]{
+  background:var(--marker);color:#14140F;border-color:#B9E600}
+html[data-theme="light"] .dot{background:var(--accent)}
+html[data-theme="light"] .hero-line em,
+html[data-theme="light"] .contact-h em,
+html[data-theme="light"] .sec-title em{background:var(--marker);color:#14140F;
+  padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+html[data-theme="light"] ::selection{background:var(--marker);color:#14140F}
+html[data-theme="light"] .prompt i,html[data-theme="light"] .boot-cur{background:var(--accent)}
+
+/* ── background layers ───────────────────────────────────── */
+#gl{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.2s ease}
+#gl.on{opacity:.55}
+
+.grid-rules{position:fixed;inset:0;z-index:1;pointer-events:none;
+  max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);
+  display:grid;grid-template-columns:repeat(6,1fr)}
+.grid-rules span{border-left:1px solid rgba(255,255,255,.028)}
+.grid-rules span:first-child{border-left-color:rgba(255,255,255,.05)}
+@media (max-width:768px){.grid-rules{grid-template-columns:repeat(3,1fr)}}
+
+.grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+
+.vignette{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 0%,transparent 45%,rgba(0,0,0,.65) 100%)}
+
+/* ── shell ───────────────────────────────────────────────── */
+.shell{position:relative;z-index:5;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+
+/* ── top bar ─────────────────────────────────────────────── */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:60;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:linear-gradient(to bottom,rgba(8,8,8,.92),rgba(8,8,8,.55));
+  border-bottom:var(--rule)}
+.topbar-in{max-width:var(--maxw);margin:0 auto;padding:.85rem var(--gutter);
+  display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;white-space:nowrap}
+.brand b{font-weight:700}
+.brand i{font-style:normal;color:var(--faint)}
+.status{display:flex;align-items:center;gap:.5rem;font-size:.62rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.dot{width:6px;height:6px;background:var(--accent);border-radius:50%;
+  box-shadow:0 0 0 0 var(--accent-line);animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(204,255,0,.45)}70%{box-shadow:0 0 0 9px rgba(204,255,0,0)}100%{box-shadow:0 0 0 0 rgba(204,255,0,0)}}
+.topbar-links{display:flex;gap:1.4rem;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.topbar-links a{transition:color .25s}
+.topbar-links a:hover{color:var(--accent)}
+@media (max-width:900px){.topbar-links{display:none}}
+@media (max-width:620px){
+  .brand i{display:none}
+  .status{font-size:.55rem;letter-spacing:.12em}
+}
+@media (max-width:430px){.status span:not(.dot){display:none}}
+
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:70;width:0}
+
+/* ── section index rail ──────────────────────────────────── */
+.rail{position:fixed;right:calc(var(--gutter) - .4rem);top:50%;transform:translateY(-50%);
+  z-index:55;display:flex;flex-direction:column;gap:.9rem;align-items:flex-end}
+.rail a{display:flex;align-items:center;gap:.55rem;font-size:.55rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--faint);transition:color .3s}
+.rail a span{opacity:0;transform:translateX(6px);transition:all .3s}
+.rail a::after{content:'';width:28px;height:1px;background:currentColor;
+  transform:scaleX(.57);transform-origin:right;transition:transform .3s}
+.rail a:hover,.rail a.on{color:var(--accent)}
+.rail a:hover span{opacity:1;transform:none}
+.rail a.on::after{transform:scaleX(1)}
+@media (max-width:1180px){.rail{display:none}}
+@media (min-width:1181px){.shell{padding-right:calc(var(--gutter) + 2.5rem)}}
+
+/* ── section chrome ──────────────────────────────────────── */
+.sec{position:relative;padding:clamp(5rem,11vh,9rem) 0;border-top:var(--rule)}
+.sec:first-of-type{border-top:0}
+.sec-head{display:block;margin-bottom:clamp(2rem,5vw,3.5rem)}
+.tag{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);
+  white-space:nowrap;padding-top:.5rem}
+.sec-title{font-family:var(--font-display);font-variation-settings:'wdth' 118,'wght' 800;
+  text-transform:uppercase;letter-spacing:-.025em;line-height:.92;margin:0;
+  font-size:clamp(1.75rem,4.6vw,3.5rem)}
+.sec-sub{color:var(--muted);max-width:52ch;margin:.9rem 0 0;font-size:.85rem}
+
+.display{font-family:var(--font-display);font-variation-settings:'wdth' 125,'wght' 800;
+  text-transform:uppercase;letter-spacing:-.035em;line-height:.85;margin:0}
+
+.hair{height:1px;background:var(--line);width:100%}
+
+/* ── reveal primitives ───────────────────────────────────── */
+[data-rise]{opacity:0;transform:translateY(26px)}
+.no-motion [data-rise]{opacity:1;transform:none}
+
+/* ── hero ────────────────────────────────────────────────── */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding-top:6rem;padding-bottom:3rem;border-top:0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
+  gap:clamp(2rem,5vw,4.5rem);align-items:center}
+@media (max-width:1024px){.hero-grid{grid-template-columns:1fr}}
+
+.hero-name{font-size:clamp(2.5rem,7.2vw,6.75rem)}
+.hero-name .ln{display:block;overflow:hidden}
+.hero-name .w{display:inline-block;white-space:nowrap}
+.hero-role{margin-top:1.6rem;padding-top:1.2rem;border-top:var(--rule);
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:.4rem 1.1rem}
+.hero-role b{color:var(--text);font-weight:600}
+.hero-line{margin:clamp(1.6rem,4vw,2.6rem) 0 0;font-size:clamp(1.05rem,2vw,1.45rem);
+  line-height:1.4;max-width:26ch;font-weight:300}
+.hero-line em{font-style:normal;color:var(--accent)}
+.hero-meta{margin-top:1.6rem;color:var(--muted);font-size:.78rem;max-width:44ch}
+
+.hero-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.2rem}
+
+/* ── buttons ─────────────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.35rem;
+  border:1px solid var(--line-hi);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;position:relative;overflow:hidden;transition:color .3s,border-color .3s;
+  background:transparent;color:var(--text);cursor:pointer;will-change:transform}
+.btn::before{content:'';position:absolute;inset:0;background:var(--accent);
+  transform:translateY(101%);transition:transform .38s cubic-bezier(.65,0,.35,1);z-index:-1}
+.btn>*{position:relative}
+.btn:hover{color:#000;border-color:var(--accent)}
+.btn:hover::before{transform:none}
+.btn.solid{background:var(--accent);color:#000;border-color:var(--accent)}
+.btn.solid::before{background:#fff}
+.btn.solid:hover{color:#000;border-color:#fff}
+.btn .arw{transition:transform .3s}
+.btn:hover .arw{transform:translateX(4px)}
+
+/* ── diagram ─────────────────────────────────────────────── */
+.diagram{position:relative;border:var(--rule);background:
+  linear-gradient(rgba(255,255,255,.012),transparent);padding:1rem 1rem .6rem}
+.diagram::before,.diagram::after{content:'';position:absolute;width:9px;height:9px;
+  border:1px solid var(--accent);opacity:.7}
+.diagram::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.diagram::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+#diagram{width:100%;height:auto;display:block}
+/* On a phone the canvas is 560px tall, which pushed the evidence off-screen.
+   Lead with the caption so the metric lands inside the first viewport. */
+@media (max-width:700px){
+  .hero{padding-top:4.4rem}
+  .hero-role{margin-top:1rem;padding-top:.9rem}
+  .hero-line{margin-top:1.1rem}
+  .hero-meta{margin-top:1rem}
+  .hero-cta{margin-top:1.35rem}
+  .diagram{display:flex;flex-direction:column}
+  .fig-case{order:-1;margin:0 0 .9rem;padding:0 0 .8rem;
+    border-top:0;border-bottom:var(--rule)}
+  .fig-note{min-height:0}
+}
+/* the figure's caption carries the evidence: real text, selectable, legible */
+.fig-case{margin-top:.7rem;padding-top:.7rem;border-top:var(--rule);text-align:left}
+.fig-head{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap}
+.fig-id{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;font-weight:600}
+.fig-id b{color:var(--accent);font-variant-numeric:tabular-nums}
+.fig-title{margin:0;font-size:clamp(.95rem,1.5vw,1.15rem);font-weight:600;letter-spacing:-.01em;
+  line-height:1.2;color:var(--text)}
+.fig-note{margin:.55rem 0 0;font-size:.8rem;line-height:1.55;color:var(--body-2);max-width:62ch;
+  min-height:3.4em}
+.fig-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;
+  margin-top:.85rem;flex-wrap:wrap}
+.fig-metric{margin:0;display:flex;align-items:baseline;gap:.3rem;flex-wrap:wrap}
+.fig-metric b{font-family:var(--font-display);font-variation-settings:'wdth' 110,'wght' 800;
+  font-size:clamp(1.9rem,4vw,2.9rem);line-height:.85;letter-spacing:-.035em;
+  color:var(--accent);font-variant-numeric:tabular-nums}
+.fig-from{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.fig-unit{font-size:1.15rem;color:var(--accent);font-weight:600;margin-left:-.1em}
+.fig-metric em{font-style:normal;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);margin-left:.35rem}
+.fig-nav{display:flex;gap:.3rem}
+.fig-nav button{min-width:44px;min-height:44px;padding:0;background:none;cursor:pointer;
+  border:1px solid var(--line-hi);color:var(--muted);font:inherit;font-size:.66rem;
+  letter-spacing:.1em;font-weight:600;font-variant-numeric:tabular-nums;
+  transition:color .25s,border-color .25s,background .25s}
+.fig-nav button:hover{color:var(--text);border-color:var(--muted)}
+.fig-nav button[aria-selected="true"]{color:#000;background:var(--accent);border-color:var(--accent)}
+
+.scroll-cue{margin-top:clamp(2rem,5vh,3.5rem);display:flex;align-items:center;gap:.7rem;
+  font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--faint)}
+.scroll-cue .bar{width:52px;height:1px;background:var(--line-hi);position:relative;overflow:hidden}
+.scroll-cue .bar::after{content:'';position:absolute;inset:0 60% 0 0;background:var(--accent)}
+
+/* ── metrics ─────────────────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);border-top:var(--rule);border-left:var(--rule)}
+@media (max-width:900px){.metrics{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.metrics{grid-template-columns:1fr}}
+.metric{border-right:var(--rule);border-bottom:var(--rule);padding:clamp(1.4rem,3vw,2.4rem);
+  position:relative;transition:background .4s;display:flex;flex-direction:column}
+.metric:hover{background:var(--surface)}
+.metric-val{font-family:var(--font-display);font-variation-settings:'wdth' 110,'wght' 800;
+  font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:.9;letter-spacing:-.04em;
+  color:var(--text);font-variant-numeric:tabular-nums;display:flex;align-items:baseline}
+
+/* One number is the hook. It takes the corner, the scale and the only lime
+   in this grid; the other five are supporting evidence, not six equal claims. */
+.metric.lead{grid-column:span 2;grid-row:span 2;justify-content:flex-end}
+.metric.lead .metric-val{color:var(--accent);
+  font-size:clamp(4.5rem,11.5vw,8rem);font-variation-settings:'wdth' 118,'wght' 850}
+.metric.lead .metric-lbl{font-size:.8rem;letter-spacing:.2em;margin-top:1.4rem}
+.metric.lead .metric-note{max-width:40ch;font-size:.82rem;margin-top:.7rem}
+@media (max-width:900px){.metric.lead{grid-column:span 2;grid-row:auto}}
+@media (max-width:560px){.metric.lead{grid-column:span 1}}
+.metric-val .pre{font-size:.42em;color:var(--faint);margin-right:.28em;letter-spacing:0}
+.metric-val .suf{font-size:.5em;margin-left:.06em}
+.metric-lbl{margin-top:1rem;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.metric-note{margin-top:.4rem;color:var(--muted);font-size:.74rem;line-height:1.5}
+
+/* ── war stories ─────────────────────────────────────────── */
+.cases{border-top:var(--rule)}
+.case{border-bottom:var(--rule)}
+.case-hd{width:100%;background:none;border:0;color:inherit;font:inherit;cursor:pointer;
+  display:flex;flex-direction:column;align-items:flex-start;text-align:left;
+  padding:clamp(1.3rem,3vw,2rem) 0;transition:color .3s;position:relative}
+.case-org{position:absolute;right:3.5rem;top:50%;transform:translateY(-50%);
+  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.case-tog{position:absolute;right:0;top:50%;transform:translateY(-50%);
+  width:26px;height:26px;border:1px solid var(--line-hi);flex:none;transition:all .3s}
+@media (max-width:700px){.case-org{display:none}}
+.case-hd:hover{color:var(--accent)}
+.case-no{font-size:.62rem;color:var(--muted);letter-spacing:.1em;white-space:nowrap;font-weight:600;margin-bottom:.3rem}
+.case-hd:hover .case-no{color:var(--accent)}
+.runnable{font-style:normal;font-family:var(--font-mono);font-size:.5em;
+  letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  color:var(--accent);border:1px solid var(--accent-line);
+  padding:.28em .5em;vertical-align:.32em;margin-left:.6em;white-space:nowrap}
+.case-hd:hover .runnable{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.case-ttl{font-family:var(--font-display);font-variation-settings:'wdth' 112,'wght' 750;
+  text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(1.05rem,2.7vw,2rem);line-height:1;
+  margin-right:5rem}
+.case-tog::before,.case-tog::after{content:'';position:absolute;background:currentColor;
+  top:50%;left:50%;transform:translate(-50%,-50%);transition:transform .3s}
+.case-tog::before{width:10px;height:1px}
+.case-tog::after{width:1px;height:10px}
+.case.open .case-tog{border-color:var(--accent);color:var(--accent)}
+.case.open .case-tog::after{transform:translate(-50%,-50%) scaleY(0)}
+.case-body{overflow:hidden;height:0}
+.case.open .case-body{height:auto}
+.case-in{padding:0 0 clamp(1.5rem,4vw,2.75rem);display:grid;
+  grid-template-columns:repeat(4,1fr);gap:clamp(1rem,2.5vw,2rem)}
+@media (max-width:900px){.case-in{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.case-in{grid-template-columns:1fr}}
+.beat{padding-top:.85rem;border-top:1px solid var(--line-hi)}
+.beat h4{margin:0 0 .5rem;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);font-weight:600}
+.beat p{margin:0;font-size:.85rem;line-height:1.6;color:var(--body-2)}
+/* the outcome is the payoff; it gets the weight the setup does not */
+.beat.hit{border-top:2px solid var(--accent)}
+.beat.hit h4{color:var(--accent)}
+.beat.hit p{color:var(--text);font-size:1rem;line-height:1.45;font-weight:500}
+
+
+/* ── the opt-in comparison ────────────────────────────────────
+   Opt-in and bounded on purpose. Making the whole page stutter to
+   prove a point costs a reader who leaves before the payoff. */
+.race{border-top:var(--rule);padding:clamp(1.2rem,3vw,1.9rem) 0 0;margin-top:.4rem}
+.race-hd{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  flex-wrap:wrap;margin-bottom:1.3rem}
+.race-note{margin:0;font-size:.76rem;color:var(--muted);max-width:56ch;line-height:1.55}
+.race-run{flex:none}
+.race-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2.5vw,2rem)}
+@media (max-width:760px){.race-grid{grid-template-columns:1fr}}
+.lane-hd{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;margin-bottom:.6rem}
+.lane-hd b{font-family:var(--font-display);font-variation-settings:'wdth' 110,'wght' 800;
+  font-size:1.4rem;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--text)}
+.lane[data-lane="after"] .lane-hd b{color:var(--accent)}
+.track{border:var(--rule);height:132px;padding:6px;position:relative;
+  display:flex;flex-direction:column;gap:3px;overflow:hidden;
+  background:var(--surface);
+  background-image:repeating-linear-gradient(to bottom,
+    var(--line) 0 9px, transparent 9px 12px);
+  background-position:6px 6px;background-size:calc(100% - 12px) calc(100% - 12px);
+  background-repeat:no-repeat}
+.bar{height:9px;width:0;background:var(--line-hi);flex:none}
+.lane[data-lane="before"] .bar{background:var(--alert);opacity:.75}
+.lane[data-lane="after"] .bar{background:var(--accent)}
+.lane-sub{margin:.6rem 0 0;font-size:.74rem;color:var(--faint);line-height:1.5}
+
+/* ── timeline ────────────────────────────────────────────── */
+.tl{position:relative;padding-left:clamp(1.5rem,4vw,3rem)}
+.tl::before{content:'';position:absolute;left:0;top:.4rem;bottom:.4rem;width:1px;background:var(--line)}
+.tl-fill{position:absolute;left:0;top:.4rem;width:1px;background:var(--accent);height:0}
+.role{position:relative;padding:0 0 clamp(2rem,5vw,3.25rem)}
+.role:last-child{padding-bottom:0}
+.role::before{content:'';position:absolute;left:calc(-1 * clamp(1.5rem,4vw,3rem) - 3px);top:.55rem;
+  width:7px;height:7px;background:var(--bg);border:1px solid var(--line-hi);transition:all .4s}
+.role.lit::before{background:var(--accent);border-color:var(--accent)}
+.role-top{display:flex;flex-direction:column;align-items:flex-start;gap:.5rem}
+.role-co{font-family:var(--font-display);font-variation-settings:'wdth' 112,'wght' 750;
+  text-transform:uppercase;font-size:clamp(1.1rem,2.4vw,1.7rem);letter-spacing:-.02em;line-height:1}
+.role-when{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.role-title{margin-top:.5rem;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.role-line{margin:.8rem 0 0;max-width:64ch;color:var(--body-2);font-size:.84rem}
+@media (min-width:1000px){
+  .role{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);
+    gap:clamp(2rem,4vw,3.5rem);align-items:start}
+  .role-line{margin-top:.35rem;max-width:78ch}
+}
+
+/* ── project ─────────────────────────────────────────────── */
+.proj+.proj{margin-top:clamp(1.25rem,3vw,2rem)}
+.proj{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  gap:clamp(1.5rem,4vw,3.5rem);border:var(--rule);padding:clamp(1.5rem,4vw,3rem);background:var(--surface)}
+@media (max-width:900px){.proj{grid-template-columns:1fr}}
+.proj-name{font-family:var(--font-display);font-variation-settings:'wdth' 125,'wght' 800;
+  text-transform:uppercase;font-size:clamp(2.2rem,5.2vw,4.4rem);letter-spacing:-.04em;line-height:.85;margin:0;
+  overflow-wrap:break-word;hyphens:none}
+.proj-badge{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.1rem;padding:.55rem .75rem;
+  max-width:100%;line-height:1.35;
+  border:1px solid var(--accent-line);color:var(--accent);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;transition:background .25s,color .25s}
+.proj-badge .dot,.proj-badge svg{flex:none}
+.proj-badge svg{width:11px;height:11px}
+a.proj-badge:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+.proj-quote{margin:1.3rem 0 0;font-size:.95rem;line-height:1.4;color:var(--text);
+  padding-left:.9rem;border-left:1px solid var(--accent)}
+.proj-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem}
+.proj-stat div b{display:block;font-family:var(--font-display);font-variation-settings:'wdth' 110,'wght' 800;
+  font-size:clamp(1.2rem,2.6vw,1.9rem);color:var(--accent);letter-spacing:-.03em}
+.proj-stat div span{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.proj ul{margin:0;padding:0;list-style:none}
+.proj li{padding:1rem 0;border-top:var(--rule);display:grid;grid-template-columns:auto 1fr;gap:1rem}
+.proj li:first-child{border-top:0;padding-top:0}
+.proj li i{font-style:normal;color:var(--accent);font-size:.58rem;letter-spacing:.1em;padding-top:.25rem}
+.proj li p{margin:0;font-size:.84rem;color:var(--body-2);line-height:1.6}
+/* the credit line is the last thing in the left rail; a one-word orphan
+   line under a 5rem wordmark reads as a layout mistake, not a caption */
+.proj .metric-note{text-wrap:pretty}
+
+/* ── skills ──────────────────────────────────────────────── */
+.skills{display:grid;gap:0;border-top:var(--rule)}
+.skrow{display:grid;grid-template-columns:minmax(140px,.28fr) 1fr;gap:clamp(1rem,3vw,2rem);
+  padding:clamp(1.1rem,2.5vw,1.7rem) 0;border-bottom:var(--rule);align-items:start}
+@media (max-width:640px){.skrow{grid-template-columns:1fr;gap:.7rem}}
+.skrow h3{margin:0;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;padding-top:.3rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{border:1px solid var(--line);padding:.34rem .65rem;font-size:.68rem;color:var(--body-2);
+  transition:all .25s;white-space:nowrap}
+.chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.chip.key{border-color:var(--line-hi);color:var(--text);font-weight:500}
+
+/* ── signals ─────────────────────────────────────────────── */
+.signals{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:var(--rule);border-left:var(--rule)}
+@media (max-width:760px){.signals{grid-template-columns:1fr}}
+.sig{border-right:var(--rule);border-bottom:var(--rule);padding:clamp(1.4rem,3vw,2.2rem);
+  display:flex;flex-direction:column;gap:.75rem;transition:background .4s;position:relative}
+.sig:hover{background:var(--surface)}
+.sig-k{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.sig-v{font-family:var(--font-display);font-variation-settings:'wdth' 112,'wght' 750;
+  text-transform:uppercase;font-size:clamp(1.15rem,2.6vw,1.8rem);letter-spacing:-.02em;line-height:1.02}
+.sig p{margin:0;color:var(--muted);font-size:.78rem;line-height:1.6}
+.sig .lnk{margin-top:auto;padding-top:.6rem;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);border-bottom:1px solid transparent;align-self:flex-start;transition:all .25s}
+.sig .lnk:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.bars{display:flex;gap:.85rem;align-items:flex-end;height:50px;margin:.55rem 0 .35rem}
+.bars i{display:block;width:34px;background:var(--accent-soft);border-top:2px solid var(--accent);
+  font-style:normal;position:relative}
+.bars i::after{content:attr(data-n);position:absolute;top:-1.3rem;left:0;font-size:.62rem;
+  color:var(--accent);font-weight:600}
+.bars i::before{content:attr(data-k);position:absolute;bottom:-1.3rem;left:0;font-size:.5rem;
+  letter-spacing:.14em;color:var(--faint)}
+
+/* ── contact ─────────────────────────────────────────────── */
+.contact{padding-bottom:clamp(4rem,9vh,7rem)}
+.contact-h{font-size:clamp(2rem,6.4vw,5.2rem);max-width:16ch}
+.contact-h em{font-style:normal;color:var(--accent)}
+.contact-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:var(--rule);
+  border-left:var(--rule);margin-top:clamp(2rem,5vw,3.5rem)}
+@media (max-width:860px){.contact-grid{grid-template-columns:repeat(2,1fr)}}
+.cc{border-right:var(--rule);border-bottom:var(--rule);padding:1.3rem;display:block;transition:background .35s}
+.cc:hover{background:var(--surface)}
+.cc span{display:block;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.cc b{display:block;margin-top:.55rem;font-weight:500;font-size:.82rem;word-break:break-word}
+.cc:hover b{color:var(--accent)}
+
+footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+
+
+/* ── boot sequence ────────────────────────────────────────────
+   The page appears to have been spawned from the environment it
+   describes. Injected by JS, so no-JS and crawlers never see it. */
+.boot{position:fixed;inset:0;z-index:300;background:#050505;
+  display:flex;align-items:center;justify-content:flex-start;
+  padding:clamp(1.25rem,6vw,5rem);
+  font-family:var(--font-mono);
+  transition:opacity .45s ease,clip-path .7s cubic-bezier(.76,0,.24,1)}
+.boot[data-out="1"]{opacity:0;clip-path:inset(0 0 100% 0);pointer-events:none}
+.boot-log{margin:0;font-size:clamp(11px,1.15vw,15px);line-height:1.75;
+  color:#D6D6D6;white-space:pre-wrap;max-width:72ch;width:100%;
+  transition:transform .7s cubic-bezier(.76,0,.24,1),opacity .5s ease}
+.boot[data-out="1"] .boot-log{transform:scale(.94) translateY(-14px);opacity:0}
+.boot-log .ps{color:var(--accent)}
+.boot-log .out{color:#8A8A8A}
+.boot-log .kw{color:#6E9BE8}          /* python blue, only while executing */
+.boot-log .cm{color:#6B6B6B}
+.boot-log .del{color:#FF4D2E;text-decoration:line-through;text-decoration-thickness:1px}
+.boot-log .add{color:var(--accent)}
+.boot-cur{display:inline-block;width:.62em;height:1.05em;background:var(--accent);
+  vertical-align:-.18em;animation:blink 1s steps(1) infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.boot-flash{position:absolute;inset:0;background:#6E9BE8;opacity:0;pointer-events:none}
+.boot-skip{position:absolute;right:clamp(1rem,4vw,2.5rem);bottom:clamp(1rem,4vw,2.5rem);
+  background:none;border:1px solid #2E2E2E;color:#8A8A8A;font:inherit;font-size:.66rem;
+  letter-spacing:.14em;text-transform:uppercase;padding:.7rem 1.1rem;cursor:pointer;
+  min-height:44px;transition:color .2s,border-color .2s}
+.boot-skip:hover{color:var(--accent);border-color:var(--accent)}
+
+/* the environment stays present after the boot hands off */
+.prompt{position:fixed;left:var(--gutter);bottom:1rem;z-index:40;
+  font-size:.62rem;letter-spacing:.08em;color:var(--faint);pointer-events:none;
+  opacity:0;transition:opacity .6s ease;
+  background:var(--bg);border:var(--rule);padding:.32rem .55rem}
+.prompt.on{opacity:1}
+.prompt i{display:inline-block;width:.55em;height:.95em;background:var(--accent);
+  vertical-align:-.13em;margin-left:.25em;animation:blink 1.1s steps(1) infinite}
+@media (max-width:820px){.prompt{display:none}}
+@media (prefers-reduced-motion:reduce){.boot-cur,.prompt i{animation:none}}
+
+
+.theme-btn{background:none;border:1px solid var(--line-hi);color:var(--muted);font:inherit;
+  font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  padding:.5rem .7rem;cursor:pointer;min-height:34px;white-space:nowrap;
+  transition:color .25s,border-color .25s}
+.theme-btn:hover{color:var(--accent);border-color:var(--accent)}
+@media (max-width:520px){.theme-btn{display:none}}
+
+/* the switch runs as a command, not a fade */
+.tswap{position:fixed;inset:0;z-index:290;background:#050505;color:#D6D6D6;
+  font-family:var(--font-mono);font-size:clamp(11px,1.15vw,15px);line-height:1.75;
+  display:flex;align-items:center;padding:clamp(1.25rem,6vw,5rem);
+  opacity:0;pointer-events:none;transition:opacity .18s ease}
+.tswap.on{opacity:1;pointer-events:auto}
+.tswap .ps{color:#CCFF00}
+.tswap .out{color:#8A8A8A}
+
+/* ── cursor ──────────────────────────────────────────────── */
+.cursor{position:fixed;top:0;left:0;width:9px;height:18px;background:var(--accent);
+  border:0;z-index:200;pointer-events:none;opacity:0;will-change:transform;
+  mix-blend-mode:difference;
+  transition:opacity .3s,scale .22s}
+.cursor.big{scale:1.9}
+.cursor.on{opacity:.9}
+
+.cursor-d{display:none}
+.cursor-d.on{opacity:1}
+@media (hover:hover) and (pointer:fine){
+  html.cursor-live body{cursor:none}
+  html.cursor-live body a,html.cursor-live body button{cursor:none}}
+@media (hover:none),(pointer:coarse){.cursor,.cursor-d{display:none}}
+</style>
+</head>
+<body>
+<script>
+/* ══════════════════════════════════════════════════════════
+   BOOT — the page spawns from the environment it describes.
+   Vanilla and injected here so it never waits on a CDN, never
+   reaches no-JS readers, and never blocks the real content.
+   ══════════════════════════════════════════════════════════ */
+(function boot(){
+  var skip = false;
+  try {
+    skip = matchMedia('(prefers-reduced-motion: reduce)').matches
+        || sessionStorage.getItem('vp_boot') === '1'
+        || (location.hash && location.hash.length > 1);
+  } catch (e) { skip = false; }
+
+  var resolve, ready = new Promise(function(r){ resolve = r; });
+  window.__bootReady = ready;
+
+  var promptEl = document.createElement('div');
+  promptEl.className = 'prompt';
+  promptEl.innerHTML = 'vinay@portfolio:~$<i></i>';
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.appendChild(promptEl);
+  });
+
+  if (skip){ resolve(); requestAnimationFrame(function(){ promptEl.classList.add('on'); }); return; }
+
+  var el = document.createElement('div');
+  el.className = 'boot';
+  el.setAttribute('role', 'presentation');
+  el.innerHTML =
+    '<pre class="boot-log" id="bootLog" aria-hidden="true"></pre>' +
+    '<div class="boot-flash" id="bootFlash"></div>' +
+    '<button type="button" class="boot-skip" id="bootSkip">Skip</button>';
+  document.documentElement.appendChild(el);
+
+  var log = el.querySelector('#bootLog');
+  var flash = el.querySelector('#bootFlash');
+  var done = false, timers = [];
+
+  function at(ms, fn){ timers.push(setTimeout(fn, ms)); }
+  function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  function finish(){
+    if (done) return; done = true;
+    timers.forEach(clearTimeout);
+    try { sessionStorage.setItem('vp_boot','1'); } catch (e) {}
+    el.setAttribute('data-out','1');
+    setTimeout(function(){ el.remove(); }, 760);
+    document.body && document.body.classList.remove('boot-lock');
+    resolve();
+    setTimeout(function(){ promptEl.classList.add('on'); }, 520);
+  }
+
+  el.querySelector('#bootSkip').addEventListener('click', finish);
+  ['keydown','pointerdown','wheel','touchstart'].forEach(function(ev){
+    window.addEventListener(ev, finish, { once:true, passive:true });
+  });
+
+  /* ── the script. His environment, his incident. ───────────── */
+  var cursor = '<span class="boot-cur"></span>';
+  var buf = '';
+  function render(tail){ log.innerHTML = buf + (tail || '') + cursor; }
+
+  var t = 0;
+  function type(text, cls, speed){
+    var i = 0, per = speed || 34;
+    for (; i < text.length; i++){
+      (function(k){
+        at(t + k * per, function(){
+          render('<span class="' + (cls||'') + '">' + esc(text.slice(0, k + 1)) + '</span>');
+        });
+      })(i);
+    }
+    t += text.length * per;
+    at(t, function(){ buf += '<span class="' + (cls||'') + '">' + esc(text) + '</span>'; render(); });
+  }
+  function line(html, pause){ at(t, function(){ buf += html + '\n'; render(); }); t += (pause || 90); }
+  function write(html){ at(t, function(){ buf += html; render(); }); }
+  function ps(){ write('<span class="ps">vinay@system</span>:<span class="out">~</span>$ '); }
+  function hold(ms){ t += ms; }
+
+  ps(); type('whoami'); hold(120); line('\n<span class="out">senior_backend_engineer</span>', 300);
+  ps(); type('uptime'); hold(110); line('\n<span class="out">6 years · 0 unplanned exits</span>', 320);
+  ps(); type('python3 main.py', null, 30); hold(160); line('', 60);
+
+  /* execution: python blue, briefly, because something is running */
+  at(t, function(){
+    flash.style.transition = 'opacity .12s ease';
+    flash.style.opacity = '.18';
+    setTimeout(function(){ flash.style.transition = 'opacity .5s ease'; flash.style.opacity = '0'; }, 130);
+  });
+  hold(220);
+
+  line('<span class="kw">async def</span> production():', 95);
+  line('    <span class="kw">while</span> True:', 95);
+  line('        deploy()', 95);
+  line('        restart()   <span class="cm"># every tuesday</span>', 95);
+  line('        restart()   <span class="cm"># and every thursday</span>', 260);
+
+  /* the ritual gets struck out. this is the incident FIG.01 opens on. */
+  at(t, function(){
+    buf = buf.replace(/        restart\(\)   <span class="cm">/g,
+                      '        <span class="del">restart()</span>   <span class="cm">');
+    render();
+  });
+  hold(420);
+
+  line('', 40);
+  line('<span class="del">-  restart()</span>  <span class="cm">root cause: fd leak, hot path</span>', 150);
+  line('<span class="add">+  0 restarts since</span>', 420);
+
+  at(t, finish);
+  hold(0);
+})();
+</script>
+
+<canvas id="gl"></canvas>
+<div class="grid-rules" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+<div class="cursor-d" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand"><b>VINAY PRABHU</b> <i>/ SR. BACKEND ENG &amp; LEAD</i></div>
+    <nav class="topbar-links" aria-label="Sections">
+      <a href="#impact">Impact</a>
+      <a href="#work">Work</a>
+      <a href="#path">Path</a>
+      <a href="#work-selected">Projects</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="status">
+      <button type="button" class="theme-btn" id="themeBtn" aria-label="Switch to light theme">theme --light</button>
+      <span class="dot"></span><span>Open to remote roles</span>
+    </div>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Section index">
+  <a href="#top" data-rail="top"><span>Index</span></a>
+  <a href="#impact" data-rail="impact"><span>Impact</span></a>
+  <a href="#work" data-rail="work"><span>Work</span></a>
+  <a href="#path" data-rail="path"><span>Path</span></a>
+  <a href="#work-selected" data-rail="jii"><span>Selected</span></a>
+  <a href="#stack" data-rail="stack"><span>Stack</span></a>
+  <a href="#signals" data-rail="signals"><span>Signals</span></a>
+  <a href="#contact" data-rail="contact"><span>Contact</span></a>
+</nav>
+
+<main class="shell" id="top">
+
+  <!-- ═══ 01 · HERO ═══════════════════════════════════════ -->
+  <section class="sec hero" id="hero" data-sec="top">
+    <div class="hero-grid">
+      <div>
+        <h1 class="display hero-name" id="heroName">
+          <span class="ln"><span class="w">Vinay</span></span>
+          <span class="ln"><span class="w">Prabhu</span></span>
+        </h1>
+        <div class="hero-role" data-rise>
+          <b>Senior Backend Engineer &amp; Eng Lead</b>
+          <span>6 yrs</span>
+          <span>Goa, India → Remote</span>
+        </div>
+        <p class="hero-line" data-rise>I find the bugs teams<br>learned to <em>live with.</em></p>
+        <div class="hero-cta" data-rise>
+          <a class="btn solid magnetic" href="#work"><span>See the receipts</span><span class="arw">→</span></a>
+          <a class="btn magnetic" href="vinay-prabhu-cv.pdf" download><span>Download CV</span><span class="arw">↓</span></a>
+        </div>
+      </div>
+
+      <figure class="diagram" data-rise style="margin:0">
+        <canvas id="diagram" width="1000" height="560" role="img"
+          aria-label="Animated architecture diagram of a production system: a partner API, an SPA client and Azure Event Hubs feeding a FastAPI service, which fans out through SQS to workers writing to PostgreSQL, DynamoDB and Redis, with an LLM agent attached to the API. The diagram marks, in turn, where four real production failures were found."></canvas>
+
+        <figcaption class="fig-case">
+          <div class="fig-head">
+            <span class="fig-id">CASE <b id="caseNo">01</b></span>
+            <h2 class="fig-title" id="caseTitle">The restart that had become a ritual</h2>
+          </div>
+          <p class="fig-note" id="caseNote">A file descriptor never closed on a hot path. The box got restarted three or four times a week until restarting it stopped counting as an incident.</p>
+          <div class="fig-foot">
+            <p class="fig-metric">
+              <span class="fig-from" id="caseFrom">4 &rarr;</span><b id="caseVal">0</b><span class="fig-unit" id="caseUnit"></span>
+              <em id="caseLabel">restarts a week, since</em>
+            </p>
+            <div class="fig-nav" role="tablist" aria-label="Production incidents">
+              <button type="button" role="tab" aria-selected="true"  data-case="0" aria-label="Case 01, the file-descriptor leak">01</button>
+              <button type="button" role="tab" aria-selected="false" data-case="1" aria-label="Case 02, runaway SQLite WAL growth">02</button>
+              <button type="button" role="tab" aria-selected="false" data-case="2" aria-label="Case 03, the Partner API rewrite">03</button>
+              <button type="button" role="tab" aria-selected="false" data-case="3" aria-label="Case 04, the misdiagnosed slowness">04</button>
+            </div>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="scroll-cue"><span class="bar"></span> Scroll</div>
+  </section>
+
+  <!-- ═══ 02 · IMPACT ═════════════════════════════════════ -->
+  <section class="sec" id="impact" data-sec="impact">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title" data-scramble>Measured in production</h2>
+        <p class="sec-sub">Not estimates. Numbers from systems that were running, breaking, or costing too much before I touched them.</p>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric lead" data-rise>
+        <div class="metric-val"><span class="num" data-value="85">85</span><span class="suf">%</span></div>
+        <div class="metric-lbl">Monthly cloud cost cut</div>
+        <p class="metric-note">Dual-mode pull/push Partner API. Shipped in 3 days against a 3-week estimate.</p>
+      </div>
+      <div class="metric" data-rise>
+        <div class="metric-val"><span class="num" data-value="19">19</span><span class="suf">GB</span></div>
+        <div class="metric-lbl">EC2 disk recovered</div>
+        <p class="metric-note">Runaway SQLite WAL growth was starving co-located services and losing data.</p>
+      </div>
+      <div class="metric" data-rise>
+        <div class="metric-val"><span class="num" data-value="40">40</span><span class="suf">%</span></div>
+        <div class="metric-lbl">Throughput increase</div>
+        <p class="metric-note">FastAPI microservices and event-driven pipelines on DynamoDB and SQS.</p>
+      </div>
+      <div class="metric" data-rise>
+        <div class="metric-val"><span class="pre">30→</span><span class="num" data-value="85">85</span><span class="suf">%</span></div>
+        <div class="metric-lbl">SLA compliance</div>
+        <p class="metric-note">In 3 months, leading a 5-engineer support engineering team.</p>
+      </div>
+      <div class="metric" data-rise>
+        <div class="metric-val"><span class="num" data-value="70">70</span><span class="suf">+</span></div>
+        <div class="metric-lbl">Technical interviews run</div>
+        <p class="metric-note">Across the organisation. Shaped how the team evaluated backend candidates.</p>
+      </div>
+      <div class="metric" data-rise>
+        <div class="metric-val"><span class="num" data-value="1000">1,000</span><span class="suf">+</span></div>
+        <div class="metric-lbl">Beta users at 99% uptime</div>
+        <p class="metric-note">Jii App — a multi-service SaaS platform I architected end to end.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 03 · WAR STORIES ════════════════════════════════ -->
+  <section class="sec" id="work" data-sec="work">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title" data-scramble>What everyone assumed</h2>
+        <p class="sec-sub">Four production problems. In each one, the whole team had already agreed on the wrong cause. The last one you can run yourself.</p>
+      </div>
+    </div>
+
+    <div class="cases" id="cases">
+
+      <article class="case open">
+        <button class="case-hd" aria-expanded="true">
+          <span class="case-no">CASE 01</span>
+          <span class="case-ttl">The restart that had become a ritual</span>
+          <span class="case-org">Zeno · 2025</span>
+          <span class="case-tog" aria-hidden="true"></span>
+        </button>
+        <div class="case-body"><div class="case-in">
+          <div class="beat"><h4>Symptom</h4><p>Three to four emergency production restarts every week, indefinitely.</p></div>
+          <div class="beat"><h4>Assumed</h4><p>Load. Restarting the box had quietly become part of the team's routine.</p></div>
+          <div class="beat"><h4>Root cause</h4><p>A file-descriptor leak in a hot path — found by auditing the full code path, accelerated by an internal AI code-analysis agent I built for the job.</p></div>
+          <div class="beat hit"><h4>Result</h4><p>Fix shipped overnight. Zero recurrences in the months since.</p></div>
+        </div></div>
+      </article>
+
+      <article class="case open">
+        <button class="case-hd" aria-expanded="true">
+          <span class="case-no">CASE 02</span>
+          <span class="case-ttl">19 GB, gone</span>
+          <span class="case-org">Zeno · 2025</span>
+          <span class="case-tog" aria-hidden="true"></span>
+        </button>
+        <div class="case-body"><div class="case-in">
+          <div class="beat"><h4>Symptom</h4><p>EC2 disk exhausted. Co-located Python services starving. Data being lost.</p></div>
+          <div class="beat"><h4>Assumed</h4><p>The instance was undersized. Add disk, move on.</p></div>
+          <div class="beat"><h4>Root cause</h4><p>Runaway SQLite WAL growth driven by incorrect checkpointing and write patterns.</p></div>
+          <div class="beat hit"><h4>Result</h4><p>19 GB recovered, plus a scheduled disk-audit script emitting structured diagnostics for automated triage.</p></div>
+        </div></div>
+      </article>
+
+      <article class="case open">
+        <button class="case-hd" aria-expanded="true">
+          <span class="case-no">CASE 03</span>
+          <span class="case-ttl">85% off, in three days</span>
+          <span class="case-org">Zeno · 2025</span>
+          <span class="case-tog" aria-hidden="true"></span>
+        </button>
+        <div class="case-body"><div class="case-in">
+          <div class="beat"><h4>Symptom</h4><p>A monthly cloud bill nobody had thought to question.</p></div>
+          <div class="beat"><h4>Assumed</h4><p>Cost of doing business. Estimate to address it: three weeks.</p></div>
+          <div class="beat"><h4>Root cause</h4><p>An inefficient partner data flow I identified unprompted — then replaced with a dual-mode pull/push Partner API in FastAPI across EC2 and Azure Event Hubs, with retry caching and lookup-table optimisation.</p></div>
+          <div class="beat hit"><h4>Result</h4><p>85% cut in monthly infrastructure cost. Shipped in three days.</p></div>
+        </div></div>
+      </article>
+
+      <article class="case open" id="case-slow">
+        <button class="case-hd" aria-expanded="true">
+          <span class="case-no">CASE 04</span>
+          <span class="case-ttl">"The app is slow" <em class="runnable">runnable</em></span>
+          <span class="case-org">Infuse · UMAI</span>
+          <span class="case-tog" aria-hidden="true"></span>
+        </button>
+        <div class="case-body"><div class="case-in">
+          <div class="beat"><h4>Symptom</h4><p>A long-standing performance complaint on the platform's heaviest views.</p></div>
+          <div class="beat"><h4>Assumed</h4><p>A front-end problem. Therefore, the front-end team's problem.</p></div>
+          <div class="beat"><h4>Root cause</h4><p>Two independent causes: unbatched backend queries, and re-rendering component trees behind an oversized bundle. Profiling found both.</p></div>
+          <div class="beat hit"><h4>Result</h4><p>Fixed both sides myself. Responsiveness restored where it mattered most.</p></div>
+        </div>
+
+        <div class="race" id="race">
+          <div class="race-hd">
+            <p class="race-note">An illustration of the two request paths at the 40% difference the fix actually produced. The shape is real, the milliseconds are indicative. Nothing on this page slows down &mdash; the work stays inside this panel.</p>
+            <button type="button" class="btn race-run" id="raceRun"><span>Run the comparison</span><span class="arw">&rarr;</span></button>
+          </div>
+          <div class="race-grid">
+            <div class="lane" data-lane="before">
+              <div class="lane-hd"><span>Before &middot; unbatched</span><b id="raceBeforeMs">&mdash;</b></div>
+              <div class="track" id="trackBefore"></div>
+              <p class="lane-sub">One round trip per row, serialised behind an oversized bundle.</p>
+            </div>
+            <div class="lane" data-lane="after">
+              <div class="lane-hd"><span>After &middot; batched</span><b id="raceAfterMs">&mdash;</b></div>
+              <div class="track" id="trackAfter"></div>
+              <p class="lane-sub">Batched query, trimmed bundle, no redundant re-render.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══ 04 · TIMELINE ═══════════════════════════════════ -->
+  <section class="sec" id="path" data-sec="path">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title" data-scramble>Six years, four rooms</h2>
+        <p class="sec-sub">Associate to engineering lead, without leaving production.</p>
+      </div>
+    </div>
+
+    <div class="tl" id="tl">
+      <div class="tl-fill" id="tlFill"></div>
+
+      <div class="role" data-rise>
+        <div class="role-meta">
+          <div class="role-top"><h3 class="role-co">Zeno</h3><span class="role-when">Oct 2025 — Present · Remote</span></div>
+          <div class="role-title">Senior Software Engineer · EV Infrastructure</div>
+        </div>
+        <p class="role-line">Killed a weekly restart ritual, recovered 19 GB of disk, cut cloud spend 85%, and stood up the organisation's first CI/CD platform with automated rollback — 10–20 minutes of manual release work down to zero-touch deploys. Replaced LiteFS's Consul-based leasing with a lighter custom layer across multi-region SQLite clusters.</p>
+      </div>
+
+      <div class="role" data-rise>
+        <div class="role-meta">
+          <div class="role-top"><h3 class="role-co">Infuse — useMango AI</h3><span class="role-when">Jul 2024 — Oct 2025 · Goa</span></div>
+          <div class="role-title">Senior Software Engineer &amp; Engineering Lead</div>
+        </div>
+        <p class="role-line">+40% throughput on a low-code test automation platform running thousands of daily executions. Owned features end to end including React and Vue front ends. Delivered 90% of MVP scope across five consecutive sprints with three engineers, ran 1:1s and growth plans, and conducted 70+ technical interviews.</p>
+      </div>
+
+      <div class="role" data-rise>
+        <div class="role-meta">
+          <div class="role-top"><h3 class="role-co">Infuse — useMango Classic</h3><span class="role-when">Jul 2022 — Jun 2024 · Goa</span></div>
+          <div class="role-title">Software Engineer</div>
+        </div>
+        <p class="role-line">−70% manual triage overhead on a Python/Ruby engine running 1000+ daily executions by decomposing a monolith into containerised microservices with real observability. SLA compliance 30% → 85% while leading five engineers. Batch completion 1 hour → under 15 minutes with asyncio and multi-threaded orchestration.</p>
+      </div>
+
+      <div class="role" data-rise>
+        <div class="role-meta">
+          <div class="role-top"><h3 class="role-co">Infuse</h3><span class="role-when">Feb 2021 — Jun 2022 · Goa</span></div>
+          <div class="role-title">Associate Software Engineer</div>
+        </div>
+        <p class="role-line">−40% runtime failures in Windows test software handling 100+ concurrent test cases by diagnosing threading deadlocks. Built a Ruby screenshotting tool 10–15% faster, then ported it to a C++ DLL to cut memory footprint and latency.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 05 · PROJECT ════════════════════════════════════ -->
+  <section class="sec" id="work-selected" data-sec="jii">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title" data-scramble>Shipped, not sketched</h2>
+        <p class="sec-sub">Five things running outside a job description: a consumer platform, two live storefronts, an internal healthcare CRM, and an agent doing real client work.</p>
+      </div>
+    </div>
+
+    <div class="proj" data-rise>
+      <div>
+        <h3 class="proj-name">Jii App</h3>
+        <span class="proj-badge"><span class="dot" style="animation:none"></span> Beta &middot; Play, App Store &amp; web</span>
+        <div class="proj-stat">
+          <div><b>1000+</b><span>Beta users</span></div>
+          <div><b>99%</b><span>Uptime</span></div>
+          <div><b>10</b><span>People led</span></div>
+        </div>
+        <p class="metric-note" style="margin-top:1.6rem">Project Lead &amp; Backend Architect&nbsp;· Design by client&nbsp;· FastAPI&nbsp;· AWS&nbsp;· MongoDB</p>
+      </div>
+      <ul>
+        <li><i>01</i><p>Built a custom payment SDK wrapping Razorpay to power the subscription model — one abstraction handling checkout, webhook reconciliation and subscription state across Android, iOS and web.</p></li>
+        <li><i>02</i><p>Architected and scaled a multi-service platform — e-commerce, video reels, job listings and real-time chat — to 1000+ active beta users at 99% uptime across app and webapp, owning end-to-end backend design against a client-provided design spec.</p></li>
+        <li><i>03</i><p>Led a 10-person cross-functional team across frontend, backend and mobile.</p></li>
+      </ul>
+    </div>
+
+    <div class="proj" data-rise>
+      <div>
+        <h3 class="proj-name">Aqtiko</h3>
+        <a class="proj-badge live" href="https://www.aqtiko.com/" target="_blank" rel="noopener">
+          <span class="dot"></span> Live &middot; aqtiko.com
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 11 11 5"/><path d="M6 5h5v5"/></svg>
+        </a>
+        <p class="proj-quote">&ldquo;He is the standard. Not the pursuit.&rdquo;</p>
+        <p class="metric-note" style="margin-top:1.4rem">Design &amp; build, end to end&nbsp;· Shopify&nbsp;· Liquid&nbsp;· Metafields</p>
+      </div>
+      <ul>
+        <li><i>01</i><p>A premium menswear label, designed and implemented end to end for a client and shipping to customers today. The brand direction, the storefront and the theme are all mine.</p></li>
+        <li><i>02</i><p>Built on Shopify with custom Liquid templating, bespoke sections and metafield-driven content, so the client edits collections, journal entries and product storytelling without touching code.</p></li>
+        <li><i>03</i><p>The reason this is here: everything else on this page is backend. This one is the whole surface — art direction through to production storefront.</p></li>
+      </ul>
+    </div>
+
+    <div class="proj" data-rise>
+      <div>
+        <h3 class="proj-name">Indo<br>Vibe</h3>
+        <a class="proj-badge live" href="https://indovibe.in/" target="_blank" rel="noopener">
+          <span class="dot"></span> Live &middot; indovibe.in
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 11 11 5"/><path d="M6 5h5v5"/></svg>
+        </a>
+        <p class="metric-note" style="margin-top:1.4rem">Implementation, end to end&nbsp;· Design by client&nbsp;· WordPress&nbsp;· Custom&nbsp;CSS</p>
+      </div>
+      <ul>
+        <li><i>01</i><p>Designed by the client, built and shipped by me — a live storefront where the visual direction came in as a spec and the implementation, theme and styling were mine to execute.</p></li>
+        <li><i>02</i><p>Translated static design files into a working WordPress site with custom CSS, without losing fidelity to the original art direction.</p></li>
+        <li><i>03</i><p>Different discipline from Aqtiko: there the design was mine too, here the job was making someone else's design real in code.</p></li>
+      </ul>
+    </div>
+
+    <div class="proj" data-rise>
+      <div>
+        <h3 class="proj-name">Lifesave<br>CRM</h3>
+        <span class="proj-badge"><span class="dot" style="animation:none"></span> Internal tool, in use</span>
+        <p class="metric-note" style="margin-top:1.4rem">Full-stack build&nbsp;· FastAPI&nbsp;· React Native&nbsp;· Push&nbsp;notifications&nbsp;· Payments</p>
+      </div>
+      <ul>
+        <li><i>01</i><p>A custom CRM and payment tool built end to end for Lifesave Healthcare — backend in Python FastAPI, mobile frontend in React Native.</p></li>
+        <li><i>02</i><p>Push notifications wired through the full stack so staff get real-time updates on records and payment events, not a dashboard they have to remember to check.</p></li>
+        <li><i>03</i><p>No off-the-shelf CRM underneath — data model, workflows and payment handling are all purpose-built for how the clinic actually operates.</p></li>
+      </ul>
+    </div>
+
+    <div class="proj" data-rise>
+      <div>
+        <h3 class="proj-name">Social<br>Agent</h3>
+        <span class="proj-badge"><span class="dot"></span> In production for clients</span>
+        <p class="metric-note" style="margin-top:1.4rem">Agent orchestration&nbsp;· Tool use&nbsp;· Structured output&nbsp;· Image generation</p>
+      </div>
+      <ul>
+        <li><i>01</i><p>An agent that produces client social posts end to end — copy and imagery together, not a text generator with stock pictures bolted on.</p></li>
+        <li><i>02</i><p>Runs on live client work rather than as a demo, which means it has to handle brand voice, format constraints and the failure modes that only appear once real people depend on the output.</p></li>
+        <li><i>03</i><p>Same instinct as the AI code-analysis agent that helped isolate the file-descriptor leak: agents are leverage I build for myself, then point at real work.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 06 · STACK ══════════════════════════════════════ -->
+  <section class="sec" id="stack" data-sec="stack">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title" data-scramble>What I reach for</h2>
+        <p class="sec-sub">Highlighted items are the ones I'd defend in a design review at 2am.</p>
+      </div>
+    </div>
+
+    <div class="skills">
+      <div class="skrow" data-rise><h3>Languages</h3><div class="chips">
+        <span class="chip key">Python</span><span class="chip key">SQL</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Ruby</span><span class="chip">Go</span><span class="chip">C</span><span class="chip">C#</span><span class="chip">Groovy</span><span class="chip">VBScript</span>
+      </div></div>
+      <div class="skrow" data-rise><h3>Backend</h3><div class="chips">
+        <span class="chip key">FastAPI</span><span class="chip">Flask</span><span class="chip">Django</span><span class="chip key">asyncio</span><span class="chip">REST</span><span class="chip">GraphQL</span><span class="chip">WebSockets</span><span class="chip key">Microservices</span><span class="chip key">Event-driven architecture</span><span class="chip">Performance profiling</span>
+      </div></div>
+      <div class="skrow" data-rise><h3>Data</h3><div class="chips">
+        <span class="chip key">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">DynamoDB</span><span class="chip">Redis</span><span class="chip">MySQL</span><span class="chip key">SQLite</span><span class="chip">Query optimisation</span><span class="chip key">LiteFS replication</span>
+      </div></div>
+      <div class="skrow" data-rise><h3>AI &amp; Agents</h3><div class="chips">
+        <span class="chip key">Anthropic API</span><span class="chip key">OpenAI API</span><span class="chip key">Agent orchestration</span><span class="chip">Tool use</span><span class="chip">Structured output</span><span class="chip">Context engineering</span><span class="chip">LangChain</span><span class="chip">AI-assisted debugging</span>
+      </div></div>
+      <div class="skrow" data-rise><h3>Cloud &amp; Infra</h3><div class="chips">
+        <span class="chip key">AWS EC2</span><span class="chip">S3</span><span class="chip key">SQS</span><span class="chip">Lambda</span><span class="chip">IAM</span><span class="chip">CodePipeline</span><span class="chip">Azure Event Hubs</span><span class="chip key">Docker</span><span class="chip key">GitHub Actions</span><span class="chip">Jenkins</span><span class="chip">Observability</span>
+      </div></div>
+      <div class="skrow" data-rise><h3>Web</h3><div class="chips">
+        <span class="chip">React</span><span class="chip">Vue</span><span class="chip">SPA architecture</span><span class="chip">Bundle optimisation</span><span class="chip">Shopify Liquid</span><span class="chip">Metafields</span>
+      </div></div>
+      <div class="skrow" data-rise><h3>Quality &amp; Lead</h3><div class="chips">
+        <span class="chip">Selenium</span><span class="chip">Playwright</span><span class="chip key">Incident response</span><span class="chip key">Code review</span><span class="chip key">Mentoring</span><span class="chip">Sprint planning</span><span class="chip">Architecture reviews</span>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ═══ 07 · SIGNALS ════════════════════════════════════ -->
+  <section class="sec" id="signals" data-sec="signals">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title" data-scramble>Verifiable, not claimed</h2>
+        <p class="sec-sub">Things with a certificate, a DOI, or a paper trail behind them.</p>
+      </div>
+    </div>
+
+    <div class="signals">
+      <div class="sig" data-rise>
+        <span class="sig-k">English proficiency · EF SET</span>
+        <span class="sig-v">C1 / C2 Advanced — 90 / 100</span>
+        <div class="bars" style="margin-bottom:1.6rem">
+          <i data-n="100" data-k="READ" style="height:50px"></i>
+          <i data-n="80" data-k="LISTEN" style="height:40px"></i>
+        </div>
+        <p>Reading 100 (C1/C2 Advanced) · Listening 80 (B1/B2). Standardised, independently scored — relevant if you are hiring across timezones.</p>
+      </div>
+
+      <div class="sig" data-rise>
+        <span class="sig-k">Published research</span>
+        <span class="sig-v">IoT Based Appliance Automation using Raspberry Pi</span>
+        <p>International Journal of Electronics Engineering (ISSN 0973-7383), Volume 10 · Issue 2 · pp. 422–425 · 2018. A UGC-recommended journal. Second author, with the Department of Electronics, St. Xavier's College, Goa.</p>
+        <a class="lnk" href="https://www.csjournals.com/IJEE/PDF10-2/55.%20CFP.pdf" target="_blank" rel="noopener">Read the paper ↗</a>
+      </div>
+
+      <div class="sig" data-rise>
+        <span class="sig-k">Hiring &amp; leadership</span>
+        <span class="sig-v">70+ technical interviews conducted</span>
+        <p>Across the organisation, shaping how backend candidates were evaluated. Led teams of three and five engineers, owning 1:1s, performance reviews and growth plans.</p>
+      </div>
+
+      <div class="sig" data-rise>
+        <span class="sig-k">Education</span>
+        <span class="sig-v">MCA — Goa University</span>
+        <p>Master of Computer Applications, Goa Business School, 2018–2021 · GPA 7.9/10. B.Sc. Electronics, St. Xavier's College Mapusa, 2015–2018 · GPA 9.0/10, Distinction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 08 · CONTACT ════════════════════════════════════ -->
+  <section class="sec contact" id="contact" data-sec="contact">
+    <h2 class="display contact-h" data-rise>Let's build<br>something that<br>doesn't need<br><em>restarting.</em></h2>
+    <p class="sec-sub" data-rise style="margin-top:1.5rem">Open to senior backend and engineering lead roles, remote or relocating. If something in production is quietly costing you money, that's the conversation I'd start with.</p>
+
+    <div class="contact-grid">
+      <a class="cc" href="mailto:vinayvprabhu67@gmail.com"><span>Email</span><b>vinayvprabhu67@gmail.com</b></a>
+      <a class="cc" href="https://linkedin.com/in/vinay-prabhu67" target="_blank" rel="noopener"><span>LinkedIn</span><b>/in/vinay-prabhu67</b></a>
+      <a class="cc" href="https://github.com/NotYaniV" target="_blank" rel="noopener"><span>GitHub</span><b>@NotYaniV</b></a>
+      <a class="cc" href="vinay-prabhu-cv.pdf" download><span>Résumé</span><b>Download PDF ↓</b></a>
+    </div>
+
+    <div class="hero-cta" style="margin-top:2rem">
+      <a class="btn solid magnetic" href="mailto:vinayvprabhu67@gmail.com?subject=Role%20enquiry"><span>Start a conversation</span><span class="arw">→</span></a>
+    </div>
+
+    <footer>
+      <span>Vinay Vishnu Prabhu · Goa, India · +91 70202 01272</span>
+      <span>Built from scratch — HTML, CSS, GSAP, Three.js</span>
+    </footer>
+  </section>
+
+</main>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/SplitText.min.js"></script>
+<script src="vendor/ScrambleTextPlugin.min.js"></script>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js"}}
+</script>
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   MOTION CONFIG — variants override this, not the code below.
+   ══════════════════════════════════════════════════════════ */
+const THEMES = {
+  dark: {
+    accent:'#CCFF00', accentRGB:'204,255,0', alert:'#FF4D2E',
+    line:'#333333', lineHi:'#4E4E4E', label:'#B8B8B8', labelHi:'#EDEDED',
+    fillRGB:'255,255,255', fillA:0.022, meterTrack:'rgba(255,255,255,.09)',
+    dim:0.42, dimStarve:0.30
+  },
+  light: {
+    accent:'#1F5A17', accentRGB:'31,90,23', alert:'#B3301A',
+    line:'#BDB7A6', lineHi:'#8C8676', label:'#57544A', labelHi:'#14140F',
+    fillRGB:'0,0,0', fillA:0.035, meterTrack:'rgba(0,0,0,.10)',
+    dim:0.66, dimStarve:0.52
+  }
+};
+const THEME = Object.assign({
+  ease: 'power3.out',
+  rise: { y: 26, dur: 0.9, stagger: 0.07 }
+}, THEMES.dark);
+function syncTheme(){
+  const light = document.documentElement.getAttribute('data-theme') === 'light';
+  Object.assign(THEME, light ? THEMES.light : THEMES.dark);
+}
+syncTheme();
+window.addEventListener('themechange', syncTheme);
+
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (REDUCED) document.body.classList.add('no-motion');
+
+/* ══════════════════════════════════════════════════════════
+   1 · HERO DIAGRAM — canvas 2D, virtual coordinate space.
+   Desktop and mobile get different graphs so labels stay
+   readable instead of scaling into mush.
+   ══════════════════════════════════════════════════════════ */
+(function diagram(){
+  const cv = document.getElementById('diagram');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+
+  const LAYOUTS = {
+    wide: {
+      w: 620, h: 380, maxH: 460,
+      nodes: [
+        {id:'partner', label:'PARTNER API',  x:  8, y: 48, w:108, h:36},
+        {id:'client',  label:'SPA CLIENT',   x:  8, y:150, w:108, h:36},
+        {id:'hub',     label:'EVENT HUBS',   x:  8, y:252, w:108, h:36},
+        {id:'api',     label:'FASTAPI',      x:175, y:145, w:115, h:42, primary:true},
+        {id:'sqs',     label:'SQS',          x:350, y: 45, w: 95, h:36},
+        {id:'worker',  label:'WORKERS',      x:350, y:215, w: 95, h:36},
+        {id:'pg',      label:'POSTGRESQL',   x:505, y: 20, w:107, h:36},
+        {id:'ddb',     label:'DYNAMODB',     x:505, y:130, w:107, h:36},
+        {id:'redis',   label:'REDIS',        x:505, y:240, w:107, h:36},
+        {id:'agent',   label:'LLM AGENT',    x:175, y:292, w:115, h:36}
+      ],
+      edges: [
+        {a:'partner',b:'api',    dir:'h', r:.34, rate:1500, sp:120},
+        {a:'client', b:'api',    dir:'h', r:.50, rate:1700, sp:125},
+        {a:'hub',    b:'api',    dir:'h', r:.68, rate:2100, sp:110},
+        {a:'api',    b:'sqs',    dir:'h', r:.50, rate:1250, sp:135},
+        {a:'api',    b:'ddb',    dir:'h', r:.25, rate:2600, sp:125},
+        {a:'sqs',    b:'worker', dir:'v', r:.50, rate:1400, sp:120},
+        {a:'worker', b:'pg',     dir:'h', r:.50, rate:1700, sp:128},
+        {a:'worker', b:'ddb',    dir:'h', r:.35, rate:2300, sp:122},
+        {a:'worker', b:'redis',  dir:'h', r:.65, rate:1900, sp:130},
+        {a:'api',    b:'agent',  dir:'v', r:.50, rate:3400, sp: 95, dashed:true, both:true}
+      ]
+    },
+    tall: {
+      w: 360, h: 690, maxH: 560,
+      nodes: [
+        {id:'partner', label:'PARTNER API', x:100, y:  8, w:160, h:50},
+        {id:'api',     label:'FASTAPI',     x:100, y:135, w:160, h:56, primary:true},
+        {id:'sqs',     label:'SQS',         x:  8, y:275, w:150, h:50},
+        {id:'ddb',     label:'DYNAMODB',    x:202, y:275, w:150, h:50},
+        {id:'worker',  label:'WORKERS',     x:100, y:410, w:160, h:50},
+        {id:'pg',      label:'POSTGRESQL',  x:  8, y:545, w:150, h:50},
+        {id:'agent',   label:'LLM AGENT',   x:202, y:545, w:150, h:50}
+      ],
+      edges: [
+        {a:'partner',b:'api',    dir:'v', r:.5, rate:1600, sp:150},
+        {a:'api',    b:'sqs',    dir:'v', r:.5, rate:1400, sp:150},
+        {a:'api',    b:'ddb',    dir:'v', r:.5, rate:2100, sp:150},
+        {a:'sqs',    b:'worker', dir:'v', r:.5, rate:1500, sp:150},
+        {a:'ddb',    b:'worker', dir:'v', r:.5, rate:2400, sp:150},
+        {a:'worker', b:'pg',     dir:'v', r:.5, rate:1700, sp:150},
+        {a:'worker', b:'agent',  dir:'v', r:.5, rate:2900, sp:140, dashed:true}
+      ]
+    }
+  };
+
+  let L, N, E, scale = 1, delivered = 0, shown = 0;
+  const mouse = {x:0, y:0, tx:0, ty:0};
+
+  function geom(n){
+    n.cx = n.x + n.w/2; n.cy = n.y + n.h/2;
+    n.r = n.x + n.w;    n.b = n.y + n.h;
+    n.pulse = 0; n.appear = 0;
+  }
+
+  /* orthogonal schematic routing — one bend pair per edge */
+  function route(e){
+    const a = N[e.a], b = N[e.b];
+    if (e.dir === 'v'){
+      const s = [a.cx, a.b], t = [b.cx, b.y];
+      const my = s[1] + (t[1]-s[1]) * e.r;
+      return [s, [s[0],my], [t[0],my], t];
+    }
+    const s = [a.r, a.cy], t = [b.x, b.cy];
+    const mx = s[0] + (t[0]-s[0]) * e.r;
+    return [s, [mx,s[1]], [mx,t[1]], t];
+  }
+
+  function measure(pts){
+    let total = 0; const segs = [];
+    for (let i=1;i<pts.length;i++){
+      const d = Math.hypot(pts[i][0]-pts[i-1][0], pts[i][1]-pts[i-1][1]);
+      segs.push(d); total += d;
+    }
+    return {segs, total};
+  }
+
+  function pointAt(pts, segs, dist){
+    let d = dist;
+    for (let i=0;i<segs.length;i++){
+      if (d <= segs[i] || i === segs.length-1){
+        const t = segs[i] === 0 ? 0 : Math.min(1, d/segs[i]);
+        return [pts[i][0] + (pts[i+1][0]-pts[i][0])*t,
+                pts[i][1] + (pts[i+1][1]-pts[i][1])*t];
+      }
+      d -= segs[i];
+    }
+    return pts[pts.length-1];
+  }
+
+  function build(){
+    const wide = cv.clientWidth >= 470;
+    L = wide ? LAYOUTS.wide : LAYOUTS.tall;
+    N = {}; L.nodes.forEach(n => { N[n.id] = Object.assign({}, n); geom(N[n.id]); });
+    E = L.edges.map((e,i) => {
+      const pts = route(e);
+      const m = measure(pts);
+      return Object.assign({}, e, {pts, segs:m.segs, total:m.total, i, packets:[], next: 300 + i*260});
+    });
+  }
+
+  function resize(){
+    const cssW = cv.clientWidth;
+    build();
+    scale = Math.min(cssW / L.w, (L.maxH || Infinity) / L.h);
+    const cssH = L.h * scale;
+    const padX = (cssW - L.w * scale) / 2;   // centre when the cap kicks in
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width  = Math.round(cssW * dpr);
+    cv.height = Math.round(cssH * dpr);
+    cv.style.height = cssH + 'px';
+    ctx.setTransform(dpr*scale, 0, 0, dpr*scale, dpr*padX, 0);
+  }
+
+  function drawNode(n, t){
+    const a = n.appear;
+    if (a <= 0) return;
+    ctx.save();
+    ctx.globalAlpha = a;
+    const p = n.pulse;
+
+    ctx.fillStyle = n.primary
+      ? `rgba(${THEME.accentRGB},${0.07 + p*0.13})`
+      : `rgba(${THEME.fillRGB},${THEME.fillA + p*0.05})`;
+    ctx.fillRect(n.x, n.y, n.w, n.h);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = n.primary
+      ? `rgba(${THEME.accentRGB},${0.55 + p*0.45})`
+      : (p > 0.02 ? THEME.accent : THEME.lineHi);
+    ctx.strokeRect(n.x + .5, n.y + .5, n.w - 1, n.h - 1);
+
+    /* corner tick */
+    ctx.strokeStyle = THEME.accent;
+    ctx.globalAlpha = a * (n.primary ? .9 : .35 + p*.6);
+    ctx.beginPath();
+    ctx.moveTo(n.x + .5, n.y + 8.5); ctx.lineTo(n.x + .5, n.y + .5); ctx.lineTo(n.x + 8.5, n.y + .5);
+    ctx.stroke();
+
+    ctx.globalAlpha = a;
+    ctx.fillStyle = n.primary ? THEME.accent : (p > .05 ? THEME.labelHi : THEME.label);
+    ctx.font = `600 ${n.primary ? 13 : 11}px 'JetBrains Mono', monospace`;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.letterSpacing = '0.12em';
+    ctx.fillText(n.label, n.cx, n.cy);
+    ctx.restore();
+  }
+
+  function drawEdge(e){
+    const prog = e.prog || 0;
+    if (prog <= 0) return;
+    ctx.save();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = THEME.line;
+    if (e.dashed){ ctx.setLineDash([4,5]); ctx.strokeStyle = `rgba(${THEME.accentRGB},.42)`; }
+    const drawn = e.total * prog;
+    ctx.beginPath();
+    ctx.moveTo(e.pts[0][0], e.pts[0][1]);
+    let acc = 0;
+    for (let i=0;i<e.segs.length;i++){
+      if (acc + e.segs[i] <= drawn){
+        ctx.lineTo(e.pts[i+1][0], e.pts[i+1][1]); acc += e.segs[i];
+      } else {
+        const p = pointAt(e.pts, e.segs, drawn);
+        ctx.lineTo(p[0], p[1]); break;
+      }
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawPacket(p, e){
+    const pt = pointAt(e.pts, e.segs, p.rev ? e.total - p.d : p.d);
+    ctx.save();
+    ctx.shadowColor = THEME.accent; ctx.shadowBlur = 12;
+    ctx.fillStyle = THEME.accent;
+    ctx.fillRect(pt[0] - 2.5, pt[1] - 2.5, 5, 5);
+    ctx.restore();
+  }
+
+
+  /* ── the four incidents the figure actually depicts ──────────
+     Each names the node where the fault lived, how its meter behaved
+     while it was failing, and what the fix did to that meter. The
+     numbers are the same ones the Impact section reports. */
+  const CASES = [
+    { no:'01', focus:['api'], kind:'saw',
+      title:'The restart that had become a ritual',
+      note:'A file descriptor never closed on a hot path. The box got restarted three or four times a week until restarting it had stopped counting as an incident.',
+      from:'4 \u2192', val:0, unit:'', label:'restarts a week, since' },
+    { no:'02', focus:['worker'], kind:'fill', starve:['pg','redis'],
+      title:'Nineteen gigabytes nobody could account for',
+      note:'Runaway SQLite write-ahead log growth filled the disk and starved the services sharing it. The instance was not undersized; the checkpointing was wrong.',
+      from:'', val:19, unit:' GB', label:'disk recovered' },
+    { no:'03', focus:['partner'], kind:'cost', route:['partner','api'],
+      title:'Eighty-five per cent off the bill, in three days',
+      note:'Partner data moved inefficiently on a path nobody had questioned. A dual-mode pull/push API replaced it, against a three-week estimate.',
+      from:'\u2212', val:85, unit:'%', label:'monthly cloud cost' },
+    { no:'04', focus:['api','client'], kind:'dual',
+      title:'The slowness that was never the front end',
+      note:'Everyone had agreed it was a front-end problem. Profiling found two causes on two sides of a handoff: unbatched queries here, an oversized bundle in the client.',
+      from:'+', val:40, unit:'%', label:'throughput recovered' }
+  ];
+
+  const CASE_MS = 7000, FAULT_MS = 4200;
+  let ci = 0, ct = 0, autoCase = true;
+  const caseEls = {
+    no: document.getElementById('caseNo'), title: document.getElementById('caseTitle'),
+    note: document.getElementById('caseNote'), val: document.getElementById('caseVal'),
+    unit: document.getElementById('caseUnit'), from: document.getElementById('caseFrom'),
+    label: document.getElementById('caseLabel')
+  };
+  const caseBtns = [...document.querySelectorAll('.fig-nav button')];
+
+  function paintCase(i){
+    const c = CASES[i];
+    if (!caseEls.no) return;
+    caseEls.no.textContent = c.no;
+    caseEls.title.textContent = c.title;
+    caseEls.note.textContent = c.note;
+    caseEls.from.textContent = c.from;
+    caseEls.unit.textContent = c.unit;
+    caseEls.label.textContent = c.label;
+    caseEls.val.textContent = c.val;
+    caseBtns.forEach((btn, k) => btn.setAttribute('aria-selected', k === i ? 'true' : 'false'));
+  }
+
+  function setCase(i, manual){
+    ci = (i + CASES.length) % CASES.length; ct = 0;
+    if (manual) autoCase = false;
+    paintCase(ci);
+  }
+
+  caseBtns.forEach(btn => {
+    btn.addEventListener('click', () => setCase(+btn.dataset.case, true));
+    btn.addEventListener('keydown', ev => {
+      if (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft'){
+        ev.preventDefault();
+        const next = (+btn.dataset.case + (ev.key === 'ArrowRight' ? 1 : -1) + CASES.length) % CASES.length;
+        setCase(next, true); caseBtns[next].focus();
+      }
+    });
+  });
+  cv.addEventListener('pointerenter', () => { autoCase = false; });
+
+  /* meter value for the focused node: 0..1 while failing, low once fixed */
+  function meter(kind, tt, fixed){
+    if (fixed) return kind === 'saw' ? 0.16 : kind === 'fill' ? 0.2 : 0.14;
+    const u = Math.min(1, tt / FAULT_MS);
+    if (kind === 'saw'){ const c = (u * 3) % 1; return 0.18 + c * 0.8; }   // climbs, restart, climbs
+    if (kind === 'fill') return Math.min(1, u * 1.25);
+    if (kind === 'cost') return 0.2 + u * 0.72;
+    return 0.55 + Math.sin(u * Math.PI * 4) * 0.3;
+  }
+
+  function drawMeter(n, v, fixed){
+    const w = n.w - 12, x = n.x + 6, y = n.b + 5, h = 3;
+    ctx.save();
+    ctx.fillStyle = THEME.meterTrack;
+    ctx.fillRect(x, y, w, h);
+    ctx.fillStyle = fixed ? THEME.accent : THEME.alert;
+    ctx.fillRect(x, y, w * v, h);
+    ctx.restore();
+  }
+
+  function drawFocusRing(n, fixed){
+    ctx.save();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = fixed ? THEME.accent : THEME.alert;
+    ctx.setLineDash([3, 3]);
+    ctx.strokeRect(n.x - 5.5, n.y - 5.5, n.w + 11, n.h + 11);
+    ctx.restore();
+  }
+
+  let last = 0, t0 = 0, raf = null;
+
+  function frame(ts){
+    if (!t0) t0 = ts;
+    const t = ts - t0;
+    const dt = Math.min(64, ts - (last || ts)); last = ts;
+
+    mouse.x += (mouse.tx - mouse.x) * .07;
+    mouse.y += (mouse.ty - mouse.y) * .07;
+
+    if (t > 1350){
+      ct += dt;
+      if (ct > CASE_MS){ ct = 0; if (autoCase){ ci = (ci + 1) % CASES.length; paintCase(ci); } }
+    }
+
+    ctx.clearRect(-L.w, -L.h, L.w * 3, L.h * 3);
+    ctx.save();
+    ctx.translate(mouse.x * 7, mouse.y * 7);
+
+    /* build-in choreography */
+    L.nodes.forEach((src, i) => {
+      const n = N[src.id];
+      const start = i * 75;
+      n.appear = Math.max(0, Math.min(1, (t - start) / 420));
+      n.pulse *= 0.94;
+    });
+    E.forEach(e => {
+      const start = 560 + e.i * 65;
+      e.prog = Math.max(0, Math.min(1, (t - start) / 520));
+    });
+
+    E.forEach(drawEdge);
+
+    if (t > 1350){
+      E.forEach(e => {
+        e.next -= dt;
+        if (e.next <= 0){
+          e.next = e.rate * (0.75 + Math.random() * 0.5);
+          e.packets.push({d:0, rev: e.both ? Math.random() < .5 : false});
+        }
+        for (let i = e.packets.length - 1; i >= 0; i--){
+          const p = e.packets[i];
+          p.d += e.sp * dt / 1000;
+          if (p.d >= e.total){
+            e.packets.splice(i, 1);
+            const target = N[p.rev ? e.a : e.b];
+            target.pulse = 1;
+            delivered++;
+          } else {
+            drawPacket(p, e);
+          }
+        }
+      });
+    }
+
+    const kase = CASES[ci], live = t > 1350, fixed = ct > FAULT_MS;
+    const focus = live ? kase.focus.filter(id => N[id]) : [];
+    const starve = (live && !fixed && kase.starve) ? kase.starve.filter(id => N[id]) : [];
+
+    L.nodes.forEach(src => {
+      const n = N[src.id];
+      let dim = 1;
+      if (focus.length){
+        dim = focus.includes(src.id) ? 1 : (starve.includes(src.id) ? THEME.dimStarve : THEME.dim);
+      }
+      const keep = n.appear;
+      n.appear = keep * dim;
+      drawNode(n, t);
+      n.appear = keep;
+    });
+
+    focus.forEach(id => {
+      const n = N[id];
+      if (n.appear <= 0) return;
+      drawFocusRing(n, fixed);
+      drawMeter(n, meter(kase.kind, ct, fixed), fixed);
+    });
+    ctx.restore();
+
+    raf = requestAnimationFrame(frame);
+  }
+
+  function staticRender(){
+    ctx.clearRect(-L.w, -L.h, L.w * 3, L.h * 3);
+    L.nodes.forEach(s => { N[s.id].appear = 1; });
+    E.forEach(e => e.prog = 1);
+    E.forEach(drawEdge);
+    L.nodes.forEach(s => drawNode(N[s.id], 0));
+  }
+
+  let ro;
+  function init(){
+    resize();
+    if (REDUCED){ staticRender(); return; }
+    if (raf) cancelAnimationFrame(raf);
+    t0 = 0; last = 0; raf = requestAnimationFrame(frame);
+  }
+
+  init();
+
+  ro = new ResizeObserver(() => {
+    const wideNow = cv.clientWidth >= 470;
+    const wasWide = L === LAYOUTS.wide;
+    resize();
+    if (REDUCED) staticRender();
+    else if (wideNow !== wasWide){ delivered = shown = 0; t0 = 0; }
+  });
+  ro.observe(cv);
+
+  window.addEventListener('themechange', () => { if (REDUCED) staticRender(); });
+
+  window.addEventListener('pointermove', ev => {
+    const r = cv.getBoundingClientRect();
+    const cl = v => Math.max(-1, Math.min(1, v));
+    mouse.tx = cl(((ev.clientX - r.left) / r.width  - .5) * 2);
+    mouse.ty = cl(((ev.clientY - r.top)  / r.height - .5) * 2);
+  }, {passive:true});
+
+  /* pause when off-screen — no burning cycles behind the fold */
+  new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (REDUCED) return;
+      if (en.isIntersecting && !raf){ last = 0; raf = requestAnimationFrame(frame); }
+      else if (!en.isIntersecting && raf){ cancelAnimationFrame(raf); raf = null; }
+    });
+  }, {threshold:0}).observe(cv);
+})();
+
+/* ══════════════════════════════════════════════════════════
+   2 · THREE.JS DEPTH FIELD — fixed backdrop, skips itself on
+   reduced-motion or when WebGL is unavailable.
+   ══════════════════════════════════════════════════════════ */
+function startBackdrop(){
+  import('three').then(THREE => {
+    const cv = document.getElementById('gl');
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({canvas: cv, antialias: false, alpha: true, powerPreference: 'low-power'});
+    } catch (err) { return; }
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    renderer.setPixelRatio(dpr);
+    renderer.setSize(innerWidth, innerHeight, false);
+
+    const scene = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(58, innerWidth/innerHeight, 0.1, 320);
+    cam.position.set(0, 0, 42);
+
+    const COLS = 58, ROWS = 34, GAP = 3.4;
+    const count = COLS * ROWS;
+    const pos = new Float32Array(count * 3);
+    const alpha = new Float32Array(count);
+    let k = 0;
+    for (let i = 0; i < COLS; i++){
+      for (let j = 0; j < ROWS; j++){
+        pos[k*3]     = (i - COLS/2) * GAP;
+        pos[k*3 + 1] = (j - ROWS/2) * GAP;
+        pos[k*3 + 2] = (Math.sin(i * .7) + Math.cos(j * .5)) * 6 - 20;
+        alpha[k] = 0.15 + Math.random() * 0.85;
+        k++;
+      }
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    geo.setAttribute('aAlpha',   new THREE.BufferAttribute(alpha, 1));
+
+    const mat = new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false,
+      uniforms: {
+        uTime:   {value: 0},
+        uAccent: {value: new THREE.Color(THEME.accent)},
+        uScroll: {value: 0},
+        uDpr:    {value: dpr}
+      },
+      vertexShader: `
+        attribute float aAlpha;
+        uniform float uTime, uScroll, uDpr;
+        varying float vA;
+        void main(){
+          vec3 p = position;
+          p.z += sin(p.x * 0.06 + uTime * 0.35) * 2.6
+               + cos(p.y * 0.08 + uTime * 0.27) * 2.2;
+          p.y += uScroll * 26.0;
+          vec4 mv = modelViewMatrix * vec4(p, 1.0);
+          float d = clamp(1.0 - (-mv.z - 8.0) / 90.0, 0.0, 1.0);
+          vA = aAlpha * d * d;
+          gl_PointSize = (1.6 + d * 2.0) * uDpr;
+          gl_Position = projectionMatrix * mv;
+        }`,
+      fragmentShader: `
+        uniform vec3 uAccent;
+        varying float vA;
+        void main(){
+          vec2 c = gl_PointCoord - 0.5;
+          if (dot(c, c) > 0.25) discard;
+          vec3 col = mix(vec3(0.42), uAccent, smoothstep(0.62, 1.0, vA));
+          gl_FragColor = vec4(col, vA * 0.55);
+        }`
+    });
+
+    const points = new THREE.Points(geo, mat);
+    scene.add(points);
+
+    let mx = 0, my = 0, tmx = 0, tmy = 0, scroll = 0;
+    addEventListener('pointermove', e => {
+      tmx = (e.clientX / innerWidth  - .5);
+      tmy = (e.clientY / innerHeight - .5);
+    }, {passive:true});
+    addEventListener('scroll', () => {
+      const max = document.body.scrollHeight - innerHeight;
+      scroll = max > 0 ? scrollY / max : 0;
+    }, {passive:true});
+    addEventListener('resize', () => {
+      cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight, false);
+    });
+
+    let running = true;
+    document.addEventListener('visibilitychange', () => { running = !document.hidden; });
+
+    const clock = new THREE.Clock();
+    (function loop(){
+      requestAnimationFrame(loop);
+      if (!running) return;
+      mx += (tmx - mx) * .04; my += (tmy - my) * .04;
+      mat.uniforms.uTime.value = clock.getElapsedTime();
+      mat.uniforms.uScroll.value += (scroll - mat.uniforms.uScroll.value) * .06;
+      cam.position.x = mx * 9;
+      cam.position.y = -my * 6;
+      cam.lookAt(0, 0, -10);
+      renderer.render(scene, cam);
+    })();
+
+    requestAnimationFrame(() => cv.classList.add('on'));
+  }).catch(() => {});
+}
+if (!REDUCED){
+  const idle = window.requestIdleCallback || function(fn){ return setTimeout(fn, 1200); };
+  (window.__bootReady || Promise.resolve()).then(() => idle(startBackdrop, { timeout: 3000 }));
+}
+
+/* ══════════════════════════════════════════════════════════
+   3 · GSAP — reveals, counters, scramble, timeline, rail
+   ══════════════════════════════════════════════════════════ */
+(function motion(){
+  if (typeof gsap === 'undefined'){
+    /* CDN blocked or slow: show everything rather than ship a black page */
+    document.querySelectorAll('[data-rise]').forEach(el => {
+      el.style.opacity = '1'; el.style.transform = 'none';
+    });
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
+
+  /* — hero headline: per-character rise — */
+  const name = document.getElementById('heroName');
+  const bootReady = window.__bootReady || Promise.resolve();
+  if (name && !REDUCED && document.fonts) {
+    Promise.all([document.fonts.ready, bootReady]).then(() => {
+      const split = new SplitText(gsap.utils.toArray(name.querySelectorAll('.w')), {type:'chars'});
+      gsap.from(split.chars, {
+        yPercent: 118, duration: 1.15, ease: 'expo.out', stagger: 0.035, delay: 0.15
+      });
+    });
+  }
+
+  if (REDUCED) { setupRail(); return; }
+
+  /* — generic rise-in — */
+  gsap.utils.toArray('[data-rise]').forEach(el => {
+    gsap.to(el, {
+      opacity: 1, y: 0, duration: THEME.rise.dur, ease: THEME.ease,
+      scrollTrigger: {trigger: el, start: 'top 88%'}
+    });
+  });
+
+  /* — section titles scramble into place — */
+  gsap.utils.toArray('[data-scramble]').forEach(el => {
+    const text = el.textContent;
+    ScrollTrigger.create({
+      trigger: el, start: 'top 85%', once: true,
+      onEnter: () => gsap.to(el, {
+        duration: 1.1, ease: 'none',
+        scrambleText: {text, chars: 'upperCase', speed: 0.55, revealDelay: 0.15}
+      })
+    });
+  });
+
+  /* — odometer counters — */
+  gsap.utils.toArray('.num').forEach(el => {
+    const target = parseFloat(el.dataset.value);
+    const o = {v: 0};
+    ScrollTrigger.create({
+      trigger: el, start: 'top 90%', once: true,
+      onEnter: () => gsap.fromTo(o, {v: 0}, {
+        v: target, duration: 1.7, ease: 'power3.out',
+        onUpdate: () => { el.textContent = Math.round(o.v).toLocaleString(); }
+      })
+    });
+  });
+
+  /* — timeline rail fill + node lighting — */
+  const tl = document.getElementById('tl'), fill = document.getElementById('tlFill');
+  if (tl && fill) {
+    gsap.to(fill, {
+      height: '100%', ease: 'none',
+      scrollTrigger: {trigger: tl, start: 'top 65%', end: 'bottom 75%', scrub: 0.6}
+    });
+    gsap.utils.toArray('.role').forEach(r => {
+      ScrollTrigger.create({
+        trigger: r, start: 'top 72%', end: 'bottom 40%',
+        onEnter:     () => r.classList.add('lit'),
+        onEnterBack: () => r.classList.add('lit'),
+        onLeaveBack: () => r.classList.remove('lit')
+      });
+    });
+  }
+
+  /* — scroll progress bar — */
+  gsap.to('#progress', {
+    width: '100%', ease: 'none',
+    scrollTrigger: {trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3}
+  });
+
+  setupRail();
+
+  function setupRail(){
+    const links = document.querySelectorAll('[data-rail]');
+    document.querySelectorAll('[data-sec]').forEach(sec => {
+      ScrollTrigger.create({
+        trigger: sec, start: 'top 45%', end: 'bottom 45%',
+        onToggle: self => {
+          if (!self.isActive) return;
+          links.forEach(l => l.classList.toggle('on', l.dataset.rail === sec.dataset.sec));
+        }
+      });
+    });
+  }
+})();
+
+/* ══════════════════════════════════════════════════════════
+   4 · WAR STORY ACCORDION — height-animated, a11y wired
+   ══════════════════════════════════════════════════════════ */
+(function cases(){
+  document.querySelectorAll('.case').forEach(c => {
+    const btn  = c.querySelector('.case-hd');
+    const body = c.querySelector('.case-body');
+    const inner = c.querySelector('.case-in');
+    btn.addEventListener('click', () => {
+      const open = c.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (typeof gsap === 'undefined' || REDUCED){
+        body.style.height = open ? 'auto' : '0';
+      } else {
+        gsap.to(body, {
+          height: open ? inner.offsetHeight : 0,
+          duration: 0.55, ease: 'power3.inOut',
+          onComplete: () => { if (open) body.style.height = 'auto'; }
+        });
+        if (open) gsap.from(inner.querySelectorAll('.beat'), {
+          opacity: 0, y: 14, duration: .5, stagger: .06, delay: .12, ease: THEME.ease
+        });
+      }
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+    });
+  });
+  /* all four ship open: this section is the argument, not a menu of it */
+})();
+
+/* ══════════════════════════════════════════════════════════
+   5 · CURSOR + MAGNETIC BUTTONS — pointer devices only
+   ══════════════════════════════════════════════════════════ */
+(function pointerFx(){
+  if (REDUCED || matchMedia('(pointer: coarse)').matches || typeof gsap === 'undefined') return;
+  const ring = document.querySelector('.cursor');
+  const dot  = document.querySelector('.cursor-d');
+  if (!ring || !dot) return;
+
+  document.documentElement.classList.add('cursor-live');
+  gsap.set([ring, dot], {xPercent:-50, yPercent:-50});
+  const setRX = gsap.quickTo(ring, 'x', {duration:.45, ease:'power3'});
+  const setRY = gsap.quickTo(ring, 'y', {duration:.45, ease:'power3'});
+  const setDX = gsap.quickTo(dot,  'x', {duration:.08, ease:'power2'});
+  const setDY = gsap.quickTo(dot,  'y', {duration:.08, ease:'power2'});
+
+  addEventListener('pointermove', e => {
+    ring.classList.add('on'); dot.classList.add('on');
+    setRX(e.clientX); setRY(e.clientY);
+    setDX(e.clientX); setDY(e.clientY);
+  }, {passive:true});
+
+  document.querySelectorAll('a, button, .chip, .metric').forEach(el => {
+    el.addEventListener('pointerenter', () => ring.classList.add('big'));
+    el.addEventListener('pointerleave', () => ring.classList.remove('big'));
+  });
+
+  document.querySelectorAll('.magnetic').forEach(el => {
+    const qx = gsap.quickTo(el, 'x', {duration:.5, ease:'power3'});
+    const qy = gsap.quickTo(el, 'y', {duration:.5, ease:'power3'});
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      qx((e.clientX - (r.left + r.width/2)) * .22);
+      qy((e.clientY - (r.top + r.height/2)) * .3);
+    });
+    el.addEventListener('pointerleave', () => { qx(0); qy(0); });
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════
+   6 · CASE 04 COMPARISON — runs only when asked, and only
+   inside its own panel. The page itself never degrades.
+   ══════════════════════════════════════════════════════════ */
+(function race(){
+  const run = document.getElementById('raceRun');
+  if (!run) return;
+  const tb = document.getElementById('trackBefore');
+  const ta = document.getElementById('trackAfter');
+  const mb = document.getElementById('raceBeforeMs');
+  const ma = document.getElementById('raceAfterMs');
+  const ROWS = 12, BEFORE_MS = 2400, AFTER_MS = 1440;   /* 40% faster */
+  let busy = false;
+
+  function lane(host, total, out, batched){
+    host.innerHTML = '';
+    const bars = [];
+    for (let i = 0; i < ROWS; i++){
+      const el = document.createElement('span');
+      el.className = 'bar';
+      host.appendChild(el);
+      bars.push(el);
+    }
+    const start = performance.now();
+    return new Promise(resolve => {
+      (function step(now){
+        const t = Math.min(1, (now - start) / total);
+        bars.forEach((el, i) => {
+          /* serialised: each row waits its turn. batched: all move together. */
+          const p = batched ? t : Math.max(0, Math.min(1, t * ROWS - i));
+          el.style.width = (p * 100) + '%';
+        });
+        out.textContent = Math.round(t * total) + ' ms';
+        if (t < 1) requestAnimationFrame(step); else resolve();
+      })(performance.now());
+    });
+  }
+
+  run.addEventListener('click', () => {
+    if (busy) return;
+    busy = true;
+    run.disabled = true;
+    run.querySelector('span').textContent = 'Running';
+    Promise.all([
+      lane(tb, BEFORE_MS, mb, false),
+      lane(ta, AFTER_MS,  ma, true)
+    ]).then(() => {
+      run.disabled = false;
+      run.querySelector('span').textContent = 'Run again';
+      busy = false;
+    });
+  });
+})();
+</script>
+<script>
+/* ══════════════════════════════════════════════════════════
+   THEME — switching runs as a command, because in this world
+   that is how things are meant to happen.
+   ══════════════════════════════════════════════════════════ */
+(function theme(){
+  var root = document.documentElement, KEY = 'vp_theme';
+  function label(){
+    var btn = document.getElementById('themeBtn');
+    if (!btn) return;
+    var light = root.getAttribute('data-theme') === 'light';
+    btn.textContent = light ? 'theme --dark' : 'theme --light';
+    btn.setAttribute('aria-label', 'Switch to ' + (light ? 'dark' : 'light') + ' theme');
+  }
+
+  function apply(next){
+    if (next === 'light') root.setAttribute('data-theme', 'light');
+    else root.removeAttribute('data-theme');
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+    label();
+    window.dispatchEvent(new Event('themechange'));
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    label();
+    var btn = document.getElementById('themeBtn');
+    if (!btn) return;
+
+    var pane = document.createElement('div');
+    pane.className = 'tswap';
+    pane.setAttribute('aria-hidden', 'true');
+    pane.innerHTML = '<pre id="tswapLog" style="margin:0"></pre>';
+    document.body.appendChild(pane);
+    var out = pane.querySelector('#tswapLog');
+
+    var busy = false;
+    btn.addEventListener('click', function(){
+      if (busy) return;
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced){ apply(next); return; }
+
+      busy = true;
+      var cmd = 'theme --set ' + next, i = 0;
+      out.innerHTML = '';
+      pane.classList.add('on');
+
+      var typer = setInterval(function(){
+        i++;
+        out.innerHTML = '<span class="ps">vinay@portfolio</span>:<span class="out">~</span>$ '
+                      + cmd.slice(0, i) + '<span class="boot-cur"></span>';
+        if (i >= cmd.length){
+          clearInterval(typer);
+          setTimeout(function(){
+            apply(next);
+            out.innerHTML = '<span class="ps">vinay@portfolio</span>:<span class="out">~</span>$ '
+                          + cmd + '\n<span class="out">' + next + ' theme applied</span>';
+            setTimeout(function(){
+              pane.classList.remove('on');
+              busy = false;
+            }, 380);
+          }, 200);
+        }
+      }, 34);
+    });
+  });
+})();
+</script>
+</body>
+</html>
