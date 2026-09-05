@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vinay Prabhu — Senior Backend Engineer &amp; Engineering Lead</title>
-<meta name="description" content="Senior backend engineer and engineering lead. Six years on Python, PostgreSQL and AWS across SaaS, IoT and EV platforms. I find the bugs teams learned to live with.">
+<title>Vinay Prabhu — Senior Backend &amp; Platform Engineer</title>
+<meta name="description" content="Senior backend and platform engineer. 5+ years on Python, Go, PostgreSQL and AWS across SaaS, IoT and EV platforms. I find the bugs teams learned to live with.">
 <meta name="author" content="Vinay Vishnu Prabhu">
 <meta name="theme-color" content="#080808">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Vinay Prabhu — Senior Backend Engineer &amp; Engineering Lead">
-<meta property="og:description" content="Cut cloud cost 85% in 3 days. Recovered 19 GB. Killed a weekly restart ritual. Six years of Python, PostgreSQL, AWS and distributed systems.">
+<meta property="og:title" content="Vinay Prabhu — Senior Backend &amp; Platform Engineer">
+<meta property="og:description" content="Built a swap-fraud detection system that screened 33,000+ transactions in two weeks. Avoided a projected 80–85% cloud run-rate increase. Killed a weekly restart ritual. 5+ years of Python, Go, AWS and distributed systems.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -683,7 +683,7 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
 
 <header class="topbar">
   <div class="topbar-in">
-    <div class="brand"><b>VINAY PRABHU</b> <i>/ SR. BACKEND ENG &amp; LEAD</i></div>
+    <div class="brand"><b>VINAY PRABHU</b> <i>/ SR. BACKEND &amp; PLATFORM ENG</i></div>
     <nav class="topbar-links" aria-label="Sections">
       <a href="#impact">Impact</a>
       <a href="#work">Work</a>
@@ -721,37 +721,39 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
           <span class="ln"><span class="w">Prabhu</span></span>
         </h1>
         <div class="hero-role" data-rise>
-          <b>Senior Backend Engineer &amp; Eng Lead</b>
-          <span>6 yrs</span>
+          <b>Senior Backend &amp; Platform Engineer</b>
+          <span>5+ yrs</span>
           <span>Goa, India → Remote</span>
         </div>
         <p class="hero-line" data-rise>I find the bugs teams<br>learned to <em>live with.</em></p>
         <div class="hero-cta" data-rise>
           <a class="btn solid magnetic" href="#work"><span>See the receipts</span><span class="arw">→</span></a>
-          <a class="btn magnetic" href="vinay-prabhu-cv.pdf" download><span>Download CV</span><span class="arw">↓</span></a>
+          <a class="btn magnetic" href="Vinay_Prabhu_Senior_Backend_Engineer.pdf" download><span>Download CV</span><span class="arw">↓</span></a>
         </div>
       </div>
 
       <figure class="diagram" data-rise style="margin:0">
         <canvas id="diagram" width="1000" height="560" role="img"
-          aria-label="Animated architecture diagram of a production system: a partner API, an SPA client and Azure Event Hubs feeding a FastAPI service, which fans out through SQS to workers writing to PostgreSQL, DynamoDB and Redis, with an LLM agent attached to the API. The diagram marks, in turn, where four real production failures were found."></canvas>
+          aria-label="Animated architecture diagram of a production system: a partner API, an SPA client and Azure Event Hubs feeding a FastAPI service, which fans out through SQS to workers writing to PostgreSQL, DynamoDB and Redis, with an LLM agent attached to the API. The diagram marks, in turn, where five real production findings were made."></canvas>
 
         <figcaption class="fig-case">
           <div class="fig-head">
             <span class="fig-id">CASE <b id="caseNo">01</b></span>
-            <h2 class="fig-title" id="caseTitle">The restart that had become a ritual</h2>
+            <h2 class="fig-title" id="caseTitle">The revenue leak nobody could see</h2>
           </div>
-          <p class="fig-note" id="caseNote">A file descriptor never closed on a hot path. The box got restarted three or four times a week until restarting it stopped counting as an incident.</p>
+          <p class="fig-note" id="caseNote">Operations had no way to separate a fraudulent swap from a legitimate one. A rule engine correlating four to five telemetry signals per transaction screened 33,000+ swaps in two weeks and confirmed 30+ fraud cases.</p>
           <div class="fig-foot">
             <p class="fig-metric">
-              <span class="fig-from" id="caseFrom">4 &rarr;</span><b id="caseVal">0</b><span class="fig-unit" id="caseUnit"></span>
-              <em id="caseLabel">restarts a week, since</em>
+              <span class="fig-from" id="caseFrom"></span><b id="caseVal">33K</b><span class="fig-unit" id="caseUnit">+</span>
+              <em id="caseLabel">swaps screened in two weeks</em>
             </p>
             <div class="fig-nav" role="tablist" aria-label="Production incidents">
-              <button type="button" role="tab" aria-selected="true"  data-case="0" aria-label="Case 01, the file-descriptor leak">01</button>
-              <button type="button" role="tab" aria-selected="false" data-case="1" aria-label="Case 02, runaway SQLite WAL growth">02</button>
-              <button type="button" role="tab" aria-selected="false" data-case="2" aria-label="Case 03, the Partner API rewrite">03</button>
-              <button type="button" role="tab" aria-selected="false" data-case="3" aria-label="Case 04, the misdiagnosed slowness">04</button>
+              <button type="button" role="tab" aria-selected="true"  data-case="0" aria-label="Case 01, the swap-fraud detection system">01</button>
+              <button type="button" role="tab" aria-selected="false" data-case="1" aria-label="Case 02, the Partner API cost flaw">02</button>
+              <button type="button" role="tab" aria-selected="false" data-case="2" aria-label="Case 03, the CPU starvation">03</button>
+              <button type="button" role="tab" aria-selected="false" data-case="3" aria-label="Case 04, the file-descriptor leak">04</button>
+              <button type="button" role="tab" aria-selected="false" data-case="4" aria-label="Case 05, runaway SQLite WAL growth">05</button>
+              <button type="button" role="tab" aria-selected="false" data-case="5" aria-label="Case 06, the misdiagnosed slowness">06</button>
             </div>
           </div>
         </figcaption>
@@ -772,34 +774,44 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
 
     <div class="metrics">
       <div class="metric lead" data-rise>
-        <div class="metric-val"><span class="num" data-value="85">85</span><span class="suf">%</span></div>
-        <div class="metric-lbl">Monthly cloud cost cut</div>
-        <p class="metric-note">Dual-mode pull/push Partner API. Shipped in 3 days against a 3-week estimate.</p>
+        <div class="metric-val"><span class="num" data-value="33">33</span><span class="suf">K+</span></div>
+        <div class="metric-lbl">Swaps screened for fraud, in two weeks</div>
+        <p class="metric-note">Gave operations its first quantified view of fleet-wide fraud — 30+ cases confirmed, 600+ flagged — by building a rule engine correlating 4–5 telemetry signals per transaction.</p>
+      </div>
+      <div class="metric" data-rise>
+        <div class="metric-val"><span class="pre">−</span><span class="num" data-value="85">85</span><span class="suf">%</span></div>
+        <div class="metric-lbl">Projected cloud run-rate avoided</div>
+        <p class="metric-note">Killed an 80–85% run-rate increase before it shipped, by catching the cost flaw in a planned Partner API and re-architecting it in 3 days against a 3-week estimate.</p>
+      </div>
+      <div class="metric" data-rise>
+        <div class="metric-val"><span class="pre">40→</span><span class="num" data-value="1.1">1.1</span><span class="suf">%</span></div>
+        <div class="metric-lbl">Average CPU on a core service</div>
+        <p class="metric-note">Freed co-located services that couldn't execute reliably — peak 65% → 6.7% — by building a pidstat watcher sampling three days and time windows to find the real offenders.</p>
       </div>
       <div class="metric" data-rise>
         <div class="metric-val"><span class="num" data-value="19">19</span><span class="suf">GB</span></div>
         <div class="metric-lbl">EC2 disk recovered</div>
-        <p class="metric-note">Runaway SQLite WAL growth was starving co-located services and losing data.</p>
+        <p class="metric-note">Stopped data loss in starved co-located services, by correcting SQLite WAL checkpointing and adding a scheduled disk-audit script.</p>
       </div>
       <div class="metric" data-rise>
         <div class="metric-val"><span class="num" data-value="40">40</span><span class="suf">%</span></div>
         <div class="metric-lbl">Throughput increase</div>
-        <p class="metric-note">FastAPI microservices and event-driven pipelines on DynamoDB and SQS.</p>
+        <p class="metric-note">Raised throughput on a platform running thousands of daily executions, by decomposing the backend into FastAPI microservices and event-driven pipelines on DynamoDB and SQS.</p>
       </div>
       <div class="metric" data-rise>
         <div class="metric-val"><span class="pre">30→</span><span class="num" data-value="85">85</span><span class="suf">%</span></div>
         <div class="metric-lbl">SLA compliance</div>
-        <p class="metric-note">In 3 months, leading a 5-engineer support engineering team.</p>
+        <p class="metric-note">Raised compliance in 3 months, by leading a 5-engineer support engineering team through systematic incident-response and stability work.</p>
       </div>
       <div class="metric" data-rise>
         <div class="metric-val"><span class="num" data-value="70">70</span><span class="suf">+</span></div>
         <div class="metric-lbl">Technical interviews run</div>
-        <p class="metric-note">Across the organisation. Shaped how the team evaluated backend candidates.</p>
+        <p class="metric-note">Set how the organisation evaluated backend candidates, by running 70+ interviews and owning the hiring bar across teams.</p>
       </div>
       <div class="metric" data-rise>
         <div class="metric-val"><span class="num" data-value="1000">1,000</span><span class="suf">+</span></div>
         <div class="metric-lbl">Beta users at 99% uptime</div>
-        <p class="metric-note">Jii App — a multi-service SaaS platform I architected end to end.</p>
+        <p class="metric-note">Took Jii App from nothing to 1,000+ beta users, by architecting a multi-service SaaS platform end to end and leading a 10-person cross-functional team.</p>
       </div>
     </div>
   </section>
@@ -809,7 +821,7 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
     <div class="sec-head">
       <div>
         <h2 class="sec-title" data-scramble>What everyone assumed</h2>
-        <p class="sec-sub">Four production problems. In each one, the whole team had already agreed on the wrong cause. The last one you can run yourself.</p>
+        <p class="sec-sub">Six production problems. In each one, the whole team had already agreed on the wrong cause — or hadn't seen there was one. The last one you can run yourself.</p>
       </div>
     </div>
 
@@ -818,51 +830,81 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
       <article class="case open">
         <button class="case-hd" aria-expanded="true">
           <span class="case-no">CASE 01</span>
-          <span class="case-ttl">The restart that had become a ritual</span>
-          <span class="case-org">Zeno · 2025</span>
+          <span class="case-ttl">The revenue leak nobody could see</span>
+          <span class="case-org">Zeno · 2026</span>
           <span class="case-tog" aria-hidden="true"></span>
         </button>
         <div class="case-body"><div class="case-in">
-          <div class="beat"><h4>Symptom</h4><p>Three to four emergency production restarts every week, indefinitely.</p></div>
-          <div class="beat"><h4>Assumed</h4><p>Load. Restarting the box had quietly become part of the team's routine.</p></div>
-          <div class="beat"><h4>Root cause</h4><p>A file-descriptor leak in a hot path — found by auditing the full code path, accelerated by an internal AI code-analysis agent I built for the job.</p></div>
-          <div class="beat hit"><h4>Result</h4><p>Fix shipped overnight. Zero recurrences in the months since.</p></div>
+          <div class="beat"><h4>Symptom</h4><p>None visible. That was the problem — 2,000+ bikes and 180+ stations running 1,200+ swaps a day, and no way to tell a legitimate swap from a fraudulent one.</p></div>
+          <div class="beat"><h4>Assumed</h4><p>That losses were noise in the margins. There was no labelled fraud set, no baseline, and nothing to compare a bad swap against.</p></div>
+          <div class="beat"><h4>Root cause</h4><p>The signal was already in the telemetry, uncorrelated. I designed an extensible rule engine from production data, correlating four to five telemetry signals per transaction.</p></div>
+          <div class="beat hit"><h4>Result</h4><p>Gave operations its first quantified view of fleet-wide fraud, measured by 33,000+ swaps screened in two weeks — 30+ cases confirmed, 600+ flagged for review. Automated warning notifications are the next layer in build.</p></div>
         </div></div>
       </article>
 
       <article class="case open">
         <button class="case-hd" aria-expanded="true">
           <span class="case-no">CASE 02</span>
-          <span class="case-ttl">19 GB, gone</span>
-          <span class="case-org">Zeno · 2025</span>
+          <span class="case-ttl">The cost flaw caught before it was built</span>
+          <span class="case-org">Zeno · 2026</span>
           <span class="case-tog" aria-hidden="true"></span>
         </button>
         <div class="case-body"><div class="case-in">
-          <div class="beat"><h4>Symptom</h4><p>EC2 disk exhausted. Co-located Python services starving. Data being lost.</p></div>
-          <div class="beat"><h4>Assumed</h4><p>The instance was undersized. Add disk, move on.</p></div>
-          <div class="beat"><h4>Root cause</h4><p>Runaway SQLite WAL growth driven by incorrect checkpointing and write patterns.</p></div>
-          <div class="beat hit"><h4>Result</h4><p>19 GB recovered, plus a scheduled disk-audit script emitting structured diagnostics for automated triage.</p></div>
+          <div class="beat"><h4>Symptom</h4><p>A Partner API architecture, planned and approved, about to go into build.</p></div>
+          <div class="beat"><h4>Assumed</h4><p>That the design was settled. Nobody had costed what it would do to the run-rate.</p></div>
+          <div class="beat"><h4>Root cause</h4><p>The data flow it specified would have carried a projected 80–85% higher cloud run-rate. I raised it unprompted and re-architected it as a dual-mode pull/push service in FastAPI across EC2 and Azure Event Hubs, with retry caching and lookup-table optimisation.</p></div>
+          <div class="beat hit"><h4>Result</h4><p>Avoided a projected 80–85% higher cloud run-rate, by replacing the design before a line of it was built — delivered in three days against a three-week estimate.</p></div>
         </div></div>
       </article>
 
       <article class="case open">
         <button class="case-hd" aria-expanded="true">
           <span class="case-no">CASE 03</span>
-          <span class="case-ttl">85% off, in three days</span>
-          <span class="case-org">Zeno · 2025</span>
+          <span class="case-ttl">The service that was eating the box</span>
+          <span class="case-org">Zeno · 2026</span>
           <span class="case-tog" aria-hidden="true"></span>
         </button>
         <div class="case-body"><div class="case-in">
-          <div class="beat"><h4>Symptom</h4><p>A monthly cloud bill nobody had thought to question.</p></div>
-          <div class="beat"><h4>Assumed</h4><p>Cost of doing business. Estimate to address it: three weeks.</p></div>
-          <div class="beat"><h4>Root cause</h4><p>An inefficient partner data flow I identified unprompted — then replaced with a dual-mode pull/push Partner API in FastAPI across EC2 and Azure Event Hubs, with retry caching and lookup-table optimisation.</p></div>
-          <div class="beat hit"><h4>Result</h4><p>85% cut in monthly infrastructure cost. Shipped in three days.</p></div>
+          <div class="beat"><h4>Symptom</h4><p>Co-located services starved of CPU, unable to execute reliably on a box a core service was quietly dominating.</p></div>
+          <div class="beat"><h4>Assumed</h4><p>Everyone had a favourite suspect. Optimisation targets were being picked from intuition, not measurement.</p></div>
+          <div class="beat"><h4>Root cause</h4><p>Nobody had sampled the box over time. I built a pidstat watcher sampling across three separate days and time windows, which named the real offenders and moved the team from assumption-based targets to data-driven ones.</p></div>
+          <div class="beat hit"><h4>Result</h4><p>Cut the core service from 40% average and 65% peak CPU to 1.1% and 6.7%, freeing the co-located services that had been starved.</p></div>
+        </div></div>
+      </article>
+
+      <article class="case open">
+        <button class="case-hd" aria-expanded="true">
+          <span class="case-no">CASE 04</span>
+          <span class="case-ttl">The restart that had become a ritual</span>
+          <span class="case-org">Zeno · 2026</span>
+          <span class="case-tog" aria-hidden="true"></span>
+        </button>
+        <div class="case-body"><div class="case-in">
+          <div class="beat"><h4>Symptom</h4><p>Three to four emergency production restarts every week, indefinitely.</p></div>
+          <div class="beat"><h4>Assumed</h4><p>Load. Restarting the box had quietly become part of the team's routine.</p></div>
+          <div class="beat"><h4>Root cause</h4><p>A file-descriptor leak in a hot path — found by auditing the full code path, accelerated by an internal AI code-analysis agent I built for the job.</p></div>
+          <div class="beat hit"><h4>Result</h4><p>Eliminated 3–4 emergency restarts a week, with zero recurrences since, by shipping the fix overnight.</p></div>
+        </div></div>
+      </article>
+
+      <article class="case open">
+        <button class="case-hd" aria-expanded="true">
+          <span class="case-no">CASE 05</span>
+          <span class="case-ttl">19 GB, gone</span>
+          <span class="case-org">Zeno · 2026</span>
+          <span class="case-tog" aria-hidden="true"></span>
+        </button>
+        <div class="case-body"><div class="case-in">
+          <div class="beat"><h4>Symptom</h4><p>EC2 disk exhausted. Co-located Python services starving. Data being lost.</p></div>
+          <div class="beat"><h4>Assumed</h4><p>The instance was undersized. Add disk, move on.</p></div>
+          <div class="beat"><h4>Root cause</h4><p>Runaway SQLite WAL growth driven by incorrect checkpointing and write patterns.</p></div>
+          <div class="beat hit"><h4>Result</h4><p>Recovered 19 GB of disk and stopped the data loss, by correcting the checkpointing and adding a scheduled disk-audit script emitting structured diagnostics for automated triage.</p></div>
         </div></div>
       </article>
 
       <article class="case open" id="case-slow">
         <button class="case-hd" aria-expanded="true">
-          <span class="case-no">CASE 04</span>
+          <span class="case-no">CASE 06</span>
           <span class="case-ttl">"The app is slow" <em class="runnable">runnable</em></span>
           <span class="case-org">Infuse · UMAI</span>
           <span class="case-tog" aria-hidden="true"></span>
@@ -871,7 +913,7 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
           <div class="beat"><h4>Symptom</h4><p>A long-standing performance complaint on the platform's heaviest views.</p></div>
           <div class="beat"><h4>Assumed</h4><p>A front-end problem. Therefore, the front-end team's problem.</p></div>
           <div class="beat"><h4>Root cause</h4><p>Two independent causes: unbatched backend queries, and re-rendering component trees behind an oversized bundle. Profiling found both.</p></div>
-          <div class="beat hit"><h4>Result</h4><p>Fixed both sides myself. Responsiveness restored where it mattered most.</p></div>
+          <div class="beat hit"><h4>Result</h4><p>Restored responsiveness on the platform's heaviest views, measured at ~40% faster request paths, by fixing both sides of the handoff myself rather than passing half of it back.</p></div>
         </div>
 
         <div class="race" id="race">
@@ -901,7 +943,7 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
   <section class="sec" id="path" data-sec="path">
     <div class="sec-head">
       <div>
-        <h2 class="sec-title" data-scramble>Six years, four rooms</h2>
+        <h2 class="sec-title" data-scramble>Five years, four rooms</h2>
         <p class="sec-sub">Associate to engineering lead, without leaving production.</p>
       </div>
     </div>
@@ -911,10 +953,10 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
 
       <div class="role" data-rise>
         <div class="role-meta">
-          <div class="role-top"><h3 class="role-co">Zeno</h3><span class="role-when">Oct 2025 — Present · Remote</span></div>
+          <div class="role-top"><h3 class="role-co">Zeno</h3><span class="role-when">Dec 2025 — Present · Remote</span></div>
           <div class="role-title">Senior Software Engineer · EV Infrastructure</div>
         </div>
-        <p class="role-line">Killed a weekly restart ritual, recovered 19 GB of disk, cut cloud spend 85%, and stood up the organisation's first CI/CD platform with automated rollback — 10–20 minutes of manual release work down to zero-touch deploys. Replaced LiteFS's Consul-based leasing with a lighter custom layer across multi-region SQLite clusters.</p>
+        <p class="role-line">Gave operations its first quantified view of fleet-wide fraud — 33,000+ swaps screened, 30+ cases confirmed in two weeks — by building the platform's first swap-fraud detection system across 2,000+ bikes and 180+ stations. Avoided a projected 80–85% higher cloud run-rate by catching a cost flaw in a planned Partner API before build. Cut a core service from 40% average and 65% peak CPU to 1.1% and 6.7%, freeing co-located services, by sampling the box with a pidstat watcher instead of guessing. Eliminated 3–4 emergency restarts a week, recovered 19 GB of disk, and cut release work from 10–20 manual minutes to zero-touch by standing up the organisation's first CI/CD platform with automated rollback. Removed Consul from the deployment topology by replacing LiteFS's leasing with a lighter custom layer in Go, and secured ~200 users across four enterprise partners with unified Microsoft and Google SSO behind backend RBAC.</p>
       </div>
 
       <div class="role" data-rise>
@@ -922,7 +964,7 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
           <div class="role-top"><h3 class="role-co">Infuse — useMango AI</h3><span class="role-when">Jul 2024 — Oct 2025 · Goa</span></div>
           <div class="role-title">Senior Software Engineer &amp; Engineering Lead</div>
         </div>
-        <p class="role-line">+40% throughput on a low-code test automation platform running thousands of daily executions. Owned features end to end including React and Vue front ends. Delivered 90% of MVP scope across five consecutive sprints with three engineers, ran 1:1s and growth plans, and conducted 70+ technical interviews.</p>
+        <p class="role-line">Raised platform throughput 40% and cut execution failures on a low-code test automation platform running thousands of daily executions, by decomposing the backend into Python microservices and event-driven pipelines on DynamoDB and SQS. Delivered 90% of MVP scope across five consecutive sprints by leading three engineers through lean planning and tight scope control, owning 1:1s and growth plans. Shipped two AI proofs of concept two months ahead of a three-month deadline, and set the backend hiring bar by running 70+ technical interviews.</p>
       </div>
 
       <div class="role" data-rise>
@@ -930,7 +972,7 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
           <div class="role-top"><h3 class="role-co">Infuse — useMango Classic</h3><span class="role-when">Jul 2022 — Jun 2024 · Goa</span></div>
           <div class="role-title">Software Engineer</div>
         </div>
-        <p class="role-line">−70% manual triage overhead on a Python/Ruby engine running 1000+ daily executions by decomposing a monolith into containerised microservices with real observability. SLA compliance 30% → 85% while leading five engineers. Batch completion 1 hour → under 15 minutes with asyncio and multi-threaded orchestration.</p>
+        <p class="role-line">Cut manual triage overhead 70% on a Python/Ruby engine running 1000+ daily executions, by decomposing a monolith into containerised microservices with real observability. Raised SLA compliance from 30% to 85% in three months by leading a five-engineer support team through systematic incident-response work. Cut batch completion from 1 hour to under 15 minutes by re-engineering execution with asyncio and multi-threaded orchestration.</p>
       </div>
 
       <div class="role" data-rise>
@@ -938,7 +980,7 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
           <div class="role-top"><h3 class="role-co">Infuse</h3><span class="role-when">Feb 2021 — Jun 2022 · Goa</span></div>
           <div class="role-title">Associate Software Engineer</div>
         </div>
-        <p class="role-line">−40% runtime failures in Windows test software handling 100+ concurrent test cases by diagnosing threading deadlocks. Built a Ruby screenshotting tool 10–15% faster, then ported it to a C++ DLL to cut memory footprint and latency.</p>
+        <p class="role-line">Cut runtime failures 40% in Windows test software handling 100+ concurrent test cases, by diagnosing and resolving threading deadlocks across the suite. Made screenshotting 10–15% faster by building a Ruby tool for it, then cut its memory footprint and latency further by porting it to a C++ DLL.</p>
       </div>
     </div>
   </section>
@@ -1041,25 +1083,25 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
 
     <div class="skills">
       <div class="skrow" data-rise><h3>Languages</h3><div class="chips">
-        <span class="chip key">Python</span><span class="chip key">SQL</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Ruby</span><span class="chip">Go</span><span class="chip">C</span><span class="chip">C#</span><span class="chip">Groovy</span><span class="chip">VBScript</span>
+        <span class="chip key">Python</span><span class="chip key">Go</span><span class="chip key">SQL</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Ruby</span><span class="chip">C</span><span class="chip">C#</span><span class="chip">Groovy</span><span class="chip">VBScript</span>
       </div></div>
       <div class="skrow" data-rise><h3>Backend</h3><div class="chips">
-        <span class="chip key">FastAPI</span><span class="chip">Flask</span><span class="chip">Django</span><span class="chip key">asyncio</span><span class="chip">REST</span><span class="chip">GraphQL</span><span class="chip">WebSockets</span><span class="chip key">Microservices</span><span class="chip key">Event-driven architecture</span><span class="chip">Performance profiling</span>
+        <span class="chip key">FastAPI</span><span class="chip">Flask</span><span class="chip">Django</span><span class="chip key">asyncio</span><span class="chip">REST</span><span class="chip">GraphQL</span><span class="chip">gRPC</span><span class="chip">WebSockets</span><span class="chip key">Microservices</span><span class="chip key">Event-driven architecture</span><span class="chip key">Distributed systems</span><span class="chip">Performance profiling</span><span class="chip">Pytest</span>
       </div></div>
       <div class="skrow" data-rise><h3>Data</h3><div class="chips">
         <span class="chip key">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">DynamoDB</span><span class="chip">Redis</span><span class="chip">MySQL</span><span class="chip key">SQLite</span><span class="chip">Query optimisation</span><span class="chip key">LiteFS replication</span>
       </div></div>
       <div class="skrow" data-rise><h3>AI &amp; Agents</h3><div class="chips">
-        <span class="chip key">Anthropic API</span><span class="chip key">OpenAI API</span><span class="chip key">Agent orchestration</span><span class="chip">Tool use</span><span class="chip">Structured output</span><span class="chip">Context engineering</span><span class="chip">LangChain</span><span class="chip">AI-assisted debugging</span>
+        <span class="chip key">Anthropic API</span><span class="chip key">OpenAI API</span><span class="chip key">Agent orchestration</span><span class="chip key">MCP</span><span class="chip">Tool use</span><span class="chip">Structured output</span><span class="chip">Context engineering</span><span class="chip">LangChain</span><span class="chip">AI-assisted debugging</span>
       </div></div>
       <div class="skrow" data-rise><h3>Cloud &amp; Infra</h3><div class="chips">
-        <span class="chip key">AWS EC2</span><span class="chip">S3</span><span class="chip key">SQS</span><span class="chip">Lambda</span><span class="chip">IAM</span><span class="chip">CodePipeline</span><span class="chip">Azure Event Hubs</span><span class="chip key">Docker</span><span class="chip key">GitHub Actions</span><span class="chip">Jenkins</span><span class="chip">Observability</span>
+        <span class="chip key">AWS EC2</span><span class="chip">S3</span><span class="chip key">SQS</span><span class="chip">Lambda</span><span class="chip">IAM</span><span class="chip">Cognito</span><span class="chip">CloudWatch</span><span class="chip">CodePipeline</span><span class="chip">Azure Event Hubs</span><span class="chip">RabbitMQ</span><span class="chip key">Terraform</span><span class="chip">OpenTofu</span><span class="chip">AWS CDK</span><span class="chip key">Docker</span><span class="chip key">GitHub Actions</span><span class="chip">Jenkins</span><span class="chip">Grafana</span><span class="chip">Datadog</span><span class="chip">Observability</span>
       </div></div>
       <div class="skrow" data-rise><h3>Web</h3><div class="chips">
         <span class="chip">React</span><span class="chip">Vue</span><span class="chip">SPA architecture</span><span class="chip">Bundle optimisation</span><span class="chip">Shopify Liquid</span><span class="chip">Metafields</span>
       </div></div>
       <div class="skrow" data-rise><h3>Quality &amp; Lead</h3><div class="chips">
-        <span class="chip">Selenium</span><span class="chip">Playwright</span><span class="chip key">Incident response</span><span class="chip key">Code review</span><span class="chip key">Mentoring</span><span class="chip">Sprint planning</span><span class="chip">Architecture reviews</span>
+        <span class="chip">Selenium</span><span class="chip">Playwright</span><span class="chip key">Incident response</span><span class="chip key">Code review</span><span class="chip key">Mentoring</span><span class="chip">Sprint planning</span><span class="chip">Architecture reviews</span><span class="chip key">OAuth 2.0 / SSO</span><span class="chip">RBAC</span><span class="chip">JWT</span>
       </div></div>
     </div>
   </section>
@@ -1114,7 +1156,7 @@ footer{border-top:var(--rule);padding:1.6rem 0;display:flex;justify-content:spac
       <a class="cc" href="mailto:vinayvprabhu67@gmail.com"><span>Email</span><b>vinayvprabhu67@gmail.com</b></a>
       <a class="cc" href="https://linkedin.com/in/vinay-prabhu67" target="_blank" rel="noopener"><span>LinkedIn</span><b>/in/vinay-prabhu67</b></a>
       <a class="cc" href="https://github.com/NotYaniV" target="_blank" rel="noopener"><span>GitHub</span><b>@NotYaniV</b></a>
-      <a class="cc" href="vinay-prabhu-cv.pdf" download><span>Résumé</span><b>Download PDF ↓</b></a>
+      <a class="cc" href="Vinay_Prabhu_Senior_Backend_Engineer.pdf" download><span>Résumé</span><b>Download PDF ↓</b></a>
     </div>
 
     <div class="hero-cta" style="margin-top:2rem">
@@ -1369,19 +1411,27 @@ if (REDUCED) document.body.classList.add('no-motion');
      while it was failing, and what the fix did to that meter. The
      numbers are the same ones the Impact section reports. */
   const CASES = [
-    { no:'01', focus:['api'], kind:'saw',
+    { no:'01', focus:['worker','ddb'], kind:'cost',
+      title:'The revenue leak nobody could see',
+      note:'Operations had no way to separate a fraudulent swap from a legitimate one. A rule engine correlating four to five telemetry signals per transaction screened 33,000+ swaps in two weeks and confirmed 30+ fraud cases.',
+      from:'', val:'33K', unit:'+', label:'swaps screened in two weeks' },
+    { no:'02', focus:['partner'], kind:'cost', route:['partner','api'],
+      title:'The cost flaw caught before it was built',
+      note:'A planned Partner API would have carried a run-rate 80\u201385% higher. I raised it unprompted and replaced the design with a dual-mode pull/push service, delivered in three days against a three-week estimate.',
+      from:'\u2212', val:85, unit:'%', label:'projected run-rate avoided' },
+    { no:'03', focus:['api'], kind:'fill', starve:['worker','ddb'],
+      title:'The service that was eating the box',
+      note:'Co-located services were starved of CPU and could not execute reliably. A pidstat watcher sampling three separate days and time windows named the real offenders, replacing assumed optimisation targets with measured ones.',
+      from:'40% \u2192', val:'1.1', unit:'%', label:'average CPU, core service' },
+    { no:'04', focus:['api'], kind:'saw',
       title:'The restart that had become a ritual',
       note:'A file descriptor never closed on a hot path. The box got restarted three or four times a week until restarting it had stopped counting as an incident.',
       from:'4 \u2192', val:0, unit:'', label:'restarts a week, since' },
-    { no:'02', focus:['worker'], kind:'fill', starve:['pg','redis'],
+    { no:'05', focus:['worker'], kind:'fill', starve:['pg','redis'],
       title:'Nineteen gigabytes nobody could account for',
       note:'Runaway SQLite write-ahead log growth filled the disk and starved the services sharing it. The instance was not undersized; the checkpointing was wrong.',
       from:'', val:19, unit:' GB', label:'disk recovered' },
-    { no:'03', focus:['partner'], kind:'cost', route:['partner','api'],
-      title:'Eighty-five per cent off the bill, in three days',
-      note:'Partner data moved inefficiently on a path nobody had questioned. A dual-mode pull/push API replaced it, against a three-week estimate.',
-      from:'\u2212', val:85, unit:'%', label:'monthly cloud cost' },
-    { no:'04', focus:['api','client'], kind:'dual',
+    { no:'06', focus:['api','client'], kind:'dual',
       title:'The slowness that was never the front end',
       note:'Everyone had agreed it was a front-end problem. Profiling found two causes on two sides of a handoff: unbatched queries here, an oversized bundle in the client.',
       from:'+', val:40, unit:'%', label:'throughput recovered' }
@@ -1747,13 +1797,17 @@ if (!REDUCED){
 
   /* — odometer counters — */
   gsap.utils.toArray('.num').forEach(el => {
-    const target = parseFloat(el.dataset.value);
+    const raw = el.dataset.value;
+    const target = parseFloat(raw);
+    /* keep the written precision — 1.1 must not land on 1 */
+    const dp = (raw.split('.')[1] || '').length;
+    const fmt = {minimumFractionDigits: dp, maximumFractionDigits: dp};
     const o = {v: 0};
     ScrollTrigger.create({
       trigger: el, start: 'top 90%', once: true,
       onEnter: () => gsap.fromTo(o, {v: 0}, {
         v: target, duration: 1.7, ease: 'power3.out',
-        onUpdate: () => { el.textContent = Math.round(o.v).toLocaleString(); }
+        onUpdate: () => { el.textContent = o.v.toLocaleString(undefined, fmt); }
       })
     });
   });
